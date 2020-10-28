@@ -9,7 +9,7 @@ Modern, lightweight and simple font loader for nuxt projects.
 ## Features
 
 - Supports `all` types of font loading 🔥 (self-hosted, Google, Typekit, etc.)
-- Follows best practice for `modern`, `fast` and `efficient` font loading
+- Follows the best practice for `modern`, `fast` and `efficient` font loading
 - Eliminates render-blocking resources and improves site performance by loading the font css asynchronously
 - Includes settings for resource hints `prefetch`, `preconnect` and `preload`
 - Super-easy to use without complicated settings and additional code bloat
@@ -163,7 +163,7 @@ html {
   fontLoader: {
     url: null,
     prefetch: false,
-    preconnect: false',
+    preconnect: false,
     preload: true,
     stylesheet: true,
     noscript: true
