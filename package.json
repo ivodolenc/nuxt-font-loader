@@ -1,0 +1,52 @@
+{
+  "name": "nuxt-font-loader",
+  "version": "1.0.0",
+  "description": "Modern, lightweight and simple font loader for nuxt projects.",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Ivo Dolenc <ivodolenc@gmail.com>"
+    }
+  ],
+  "main": "lib/module.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivodolenc/nuxt-font-loader"
+  },
+  "bugs": {
+    "url": "https://github.com/ivodolenc/nuxt-font-loader/issues"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "release": "standard-version && git push --follow-tags && npm publish"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "nuxtjs",
+    "nuxt",
+    "nuxt-module",
+    "nuxt-font",
+    "webfont",
+    "fontloader",
+    "nuxt-font-loader"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nuxtjs/eslint-config": "latest",
+    "babel-eslint": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "husky": "latest",
+    "prettier": "latest",
+    "standard-version": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
