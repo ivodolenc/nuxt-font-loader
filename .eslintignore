@@ -1,5 +1,5 @@
-# Common
 node_modules
 dist
 .nuxt
 coverage
+lib/plugin.js
