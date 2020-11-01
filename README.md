@@ -4,7 +4,7 @@
 
 <h1>Nuxt Font Loader</h1>
 
-Modern, lightweight and simple font loader for nuxt projects.
+Simple, modern and lightweight font loader for nuxt projects.
 
 ## Features
 
