@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/ivodolenc/nuxt-font-loader/compare/v1.0.1...v1.1.0) (2020-11-09)
+
+
+### Features
+
+* add support for loading multiple font sources at the same time ([fec5b16](https://github.com/ivodolenc/nuxt-font-loader/commit/fec5b168a6e16fbcfaba2361d36076f46652c342))
+
 ### [1.0.1](https://github.com/ivodolenc/nuxt-font-loader/compare/v1.0.0...v1.0.1) (2020-11-01)
 
 
