@@ -57,27 +57,11 @@ export default {
 }
 ```
 
-**Multiple sources usage**
-
-> Use this method if you want to load multiple sources at the same time
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      local: '/fonts/font-face.css' // Path to your css file
-    }
-  }
-}
-```
-
 **font-face.css**
 
-> Example of your font-face.css file
-
 ```css
+/* Define @font-face rules */
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -99,35 +83,136 @@ export default {
 
 **Specify families**
 
-> Specify your font-family as usual
-
 ```css
+/* Specify the font-family as usual */
+
 html {
   font-family: 'Inter', sans-serif;
 }
 ```
 
-**Advanced usage (optional)**
+### Google font loading
 
-> Use this method only if you want to fully adjust the settings
+**Basic usage**
 
 ```js
 // nuxt.config.js
 
 {
   fontLoader: {
-    url: '/fonts/font-face.css',
+    // Paste a google link here
+    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+
+    // Enable options
+    prefetch: true,
+    preconnect: true
+  }
+}
+```
+
+**Specify families**
+
+```css
+/* Specify the font family as usual */
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+```
+
+### Custom font loading
+
+**Basic usage**
+
+```js
+// nuxt.config.js
+
+{
+  fontLoader: {
+    // Paste a new custom link here (for example Typekit)
+    url: 'https://new-custom-link/',
+
+    // Enable options
+    prefetch: true,
+    preconnect: true
+  }
+}
+```
+
+**Specify families**
+
+```css
+/* Specify the font family as usual */
+
+html {
+  font-family: 'New Custom Family', sans-serif;
+}
+```
+
+### Multiple sources usage example
+
+Automatically sets the best settings based on your `url` option
+
+```js
+// nuxt.config.js
+
+{
+  fontLoader: {
+    url: {
+      local: '/fonts/font-face.css',
+      google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+      custom: 'https://new-custom-link/'
+    }
+  }
+}
+```
+
+> Use this method if you want to load multiple font sources at the same time
+
+**Specify families**
+
+```css
+/* Specify the font family as usual */
+
+html {
+  font-family: 'Inter', sans-serif; /* Local */
+}
+
+nav {
+  font-family: 'Roboto', sans-serif; /* Google */
+}
+
+h1 {
+  font-family: 'New Custom Family', sans-serif; /* Custom */
+}
+```
+
+### Advanced usage example (optional)
+
+Use these methods only if you want to customize the `default` settings
+
+```js
+// nuxt.config.js
+
+{
+  fontLoader: {
+    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+
+    prefetch: {
+      hid: 'my-font-prefetch',
+    },
+
+    preconnect: {
+      hid: 'my-font-preconnect',
+      crossorigin: 'anonymous',
+    },
 
     preload: {
       hid: 'my-font-preload',
-      rel: 'preload',
-      as: 'style',
-      href: '/fonts/font-face.css',
     },
 
     noscript: {
       hid: 'my-font-noscript',
-      innerHTML: `<link rel="stylesheet" href="/fonts/font-face.css">`,
     }
   }
 }
@@ -144,326 +229,24 @@ html {
 
     preload: {
       local: {
-        hid: 'my-font-preload',
-        rel: 'preload',
-        as: 'style',
-        href: '/fonts/font-face.css'
+        hid: 'my-font-preload'
       }
     },
 
     noscript: {
       local: {
-        hid: 'my-font-noscript',
-        innerHTML: `<link rel="stylesheet" href="/fonts/font-face.css">`
+        hid: 'my-font-noscript'
       }
     }
   }
 }
 ```
 
-### Google font loading
-
-**Basic usage**
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    // Paste a google link here
-    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-
-    // Enable 'prefetch' and 'preconnect' options
-    prefetch: true,
-    preconnect: true
-  }
-}
-```
-
-**Multiple sources usage**
-
-> Use this method if you want to load multiple sources at the same time
-
-Also, using this method, the `prefetch` and `preconnect` options are enabled by default, so there is no need for manual adjustment:
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
-    }
-  }
-}
-```
-
-**Specify families**
-
-> Specify your font-family as usual
-
-```css
-html {
-  font-family: 'Roboto', sans-serif;
-}
-```
-
-**Advanced usage (optional)**
-
-> Use this method only if you want to fully adjust the settings
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-
-    prefetch: {
-      hid: 'my-font-prefetch',
-      rel: 'dns-prefetch',
-      href: 'https://fonts.gstatic.com/',
-    },
-
-    preconnect: {
-      hid: 'my-font-preconnect',
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com/',
-      crossorigin: '',
-    },
-
-    preload: {
-      hid: 'my-font-preload',
-      rel: 'preload',
-      as: 'style',
-      href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-    },
-
-    noscript: {
-      hid: 'my-font-noscript',
-      innerHTML: `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">`,
-    }
-  }
-}
-```
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
-    },
-
-    prefetch: {
-      google: {
-        hid: 'my-font-prefetch',
-        rel: 'dns-prefetch',
-        href: 'https://fonts.gstatic.com/',
-      },
-    },
-
-    preconnect: {
-      google: {
-        hid: 'my-font-preconnect',
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com/',
-        crossorigin: '',
-      }
-    },
-
-    preload: {
-      google: {
-        hid: 'my-font-preload',
-        rel: 'preload',
-        as: 'style',
-        href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-      }
-    },
-
-    noscript: {
-      google: {
-        hid: 'my-font-noscript',
-        innerHTML: `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">`,
-      }
-    },
-  }
-}
-```
-
-### Custom font loading
-
-**Basic usage**
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    // Paste a new custom link here (for example Typekit link)
-    url: 'https://new-custom-link/',
-
-    // Enable 'prefetch' and 'preconnect' options
-    prefetch: true,
-    preconnect: true
-  }
-}
-```
-
-**Multiple sources usage**
-
-> Use this method if you want to load multiple sources at the same time
-
-Also, using this method, the `prefetch` and `preconnect` options are enabled by default, so there is no need for manual adjustment:
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      custom: 'https://new-custom-link/'
-    }
-  }
-}
-```
-
-**Specify families**
-
-> Specify your font-family as usual
-
-```css
-html {
-  font-family: 'New Custom Family', sans-serif;
-}
-```
-
-**Advanced usage (optional)**
-
-> Use this method only if you want to fully adjust the settings
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: 'https://new-custom-link/',
-
-    prefetch: {
-      hid: 'my-font-prefetch',
-      rel: 'dns-prefetch',
-      href: 'https://use.typekit.net/',
-    },
-
-    preconnect: {
-      hid: 'my-font-preconnect',
-      rel: 'preconnect',
-      href: 'https://use.typekit.net/',
-      crossorigin: '',
-    },
-
-    preload: {
-      hid: 'my-font-preload',
-      rel: 'preload',
-      as: 'style',
-      href: 'https://new-custom-link/',
-    },
-
-    noscript: {
-      hid: 'my-font-noscript',
-      innerHTML: `<link rel="stylesheet" href="https://new-custom-link/">`,
-    }
-  }
-}
-```
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      custom: 'https://new-custom-link/'
-    },
-
-    prefetch: {
-      custom: {
-        hid: 'my-font-prefetch',
-        rel: 'dns-prefetch',
-        href: 'https://use.typekit.net/',
-      },
-    },
-
-    preconnect: {
-      custom: {
-        hid: 'my-font-preconnect',
-        rel: 'preconnect',
-        href: 'https://use.typekit.net/',
-        crossorigin: '',
-      }
-    },
-
-    preload: {
-      custom: {
-        hid: 'my-font-preload',
-        rel: 'preload',
-        as: 'style',
-        href: 'https://new-custom-link/',
-      }
-    },
-
-    noscript: {
-      custom: {
-        hid: 'my-font-noscript',
-        innerHTML: `<link rel="stylesheet" href="https://new-custom-link/">`,
-      }
-    },
-  }
-}
-```
-
-### Multiple sources usage example
-
-> Use this method if you want to load multiple sources at the same time
-
-Automatically sets the best settings according to your url option:
-
-```js
-// nuxt.config.js
-
-{
-  fontLoader: {
-    url: {
-      local: '/fonts/font-face.css',
-      google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-      custom: 'https://new-custom-link/'
-    }
-  }
-}
-```
-
-**Specify families**
-
-> Specify your font-family as usual
-
-```css
-html {
-  font-family: 'Inter', sans-serif; /* Local */
-}
-
-nav {
-  font-family: 'Roboto', sans-serif; /* Google */
-}
-
-h1 {
-  font-family: 'New Custom Family', sans-serif; /* Custom */
-}
-```
+> Following these examples, it is possible to customize all settings as needed
 
 ## Options
 
-**All default options**
+**Default options**
 
 ```js
 // nuxt.config.js
