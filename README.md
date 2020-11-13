@@ -4,7 +4,7 @@
 
 <h1>Nuxt Font Loader</h1>
 
-Simple, modern and lightweight font loader for nuxt projects.
+Simple, modern and lightweight font loader for Nuxt projects
 
 ## Features
 
@@ -253,7 +253,11 @@ Use these methods only if you want to customize the `default` settings
 
 {
   fontLoader: {
-    url: {},
+    url: {
+      local: undefined,
+      google: undefined,
+      custom: undefined,
+    },
     prefetch: false,
     preconnect: false,
     preload: {},
