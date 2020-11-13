@@ -1,6 +1,6 @@
 {
   "name": "nuxt-font-loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple, modern and lightweight font loader for nuxt projects.",
   "license": "MIT",
   "author": "Ivo Dolenc",
