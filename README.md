@@ -43,7 +43,15 @@ export default {
 
 ## Examples
 
-### Local font loading
+💻 Here are some code examples
+
+- [Local](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/local)
+- [Google](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/google)
+- [Custom](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/custom)
+- [Multiple sources](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/multiple-sources)
+- [Advanced](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/advanced)
+
+### Local font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/local)]
 
 **Basic usage**
 
@@ -91,7 +99,7 @@ html {
 }
 ```
 
-### Google font loading
+### Google font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/google)]
 
 **Basic usage**
 
@@ -120,7 +128,7 @@ html {
 }
 ```
 
-### Custom font loading
+### Custom font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/custom)]
 
 **Basic usage**
 
@@ -149,9 +157,9 @@ html {
 }
 ```
 
-### Multiple sources usage example
+### Multiple sources usage example [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/multiple-sources)]
 
-Automatically sets the best settings based on your `url` option
+✅ Automatically sets the best settings based on your `url` option
 
 ```js
 // nuxt.config.js
@@ -187,9 +195,9 @@ h1 {
 }
 ```
 
-### Advanced usage example (optional)
+### Advanced usage example [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/advanced)]
 
-Use these methods only if you want to customize the `default` settings
+⚠️ Use these methods only if you want to customize the `default` settings (optional)
 
 ```js
 // nuxt.config.js
@@ -242,7 +250,7 @@ Use these methods only if you want to customize the `default` settings
 }
 ```
 
-> Following these examples, it is possible to customize all settings as needed
+> ⚙️ Following these examples, it is possible to customize all settings as needed
 
 ## Options
 
@@ -273,7 +281,7 @@ Use these methods only if you want to customize the `default` settings
 
 Defines the path of the css file that includes all @font-face rules.
 
-> This option is required.
+> ⚠️ This option is required.
 
 ### `prefetch`
 
@@ -281,7 +289,7 @@ Defines the path of the css file that includes all @font-face rules.
 
 Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
 
-> When used with multiple sources method, this is enabled by default
+> ✅ When used with multiple sources method, this is enabled by default
 
 ```html
 <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
@@ -295,7 +303,7 @@ Enable this if you request fonts from a third-party server, such as Google, Type
 
 Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
 
-> When used with multiple sources method, this is enabled by default
+> ✅ When used with multiple sources method, this is enabled by default
 
 ```html
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
