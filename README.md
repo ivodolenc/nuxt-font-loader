@@ -45,13 +45,13 @@ export default {
 
 💻 Here are some code examples
 
-- [Local](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/local)
-- [Google](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/google)
+- [Local](https://codesandbox.io/s/example-nuxt-font-loader-local-drpnf)
+- [Google](https://codesandbox.io/s/example-nuxt-font-loader-google-btkvl)
 - [Custom](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/custom)
-- [Multiple sources](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/multiple-sources)
+- [Multiple sources](https://codesandbox.io/s/example-nuxt-font-loader-multiple-ho9ty)
 - [Advanced](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/advanced)
 
-### Local font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/local)]
+### Local font loading
 
 **Basic usage**
 
@@ -60,7 +60,7 @@ export default {
 
 {
   fontLoader: {
-    url: '/fonts/font-face.css' // Path to your css file
+    url: '/fonts/font-face.css'
   }
 }
 ```
@@ -76,7 +76,6 @@ export default {
   font-weight: 300;
   font-display: swap;
   src: url('/fonts/I-300.woff2') format('woff2');
-  /* Consider adding a 'unicode-range' CSS descriptor */
 }
 
 @font-face {
@@ -85,7 +84,6 @@ export default {
   font-weight: 400;
   font-display: swap;
   src: url('/fonts/I-400.woff2') format('woff2');
-  /* Consider adding a 'unicode-range' CSS descriptor */
 }
 ```
 
@@ -99,7 +97,7 @@ html {
 }
 ```
 
-### Google font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/google)]
+### Google font loading
 
 **Basic usage**
 
@@ -108,10 +106,8 @@ html {
 
 {
   fontLoader: {
-    // Paste a google link here
     url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
 
-    // Enable options
     prefetch: true,
     preconnect: true
   }
@@ -128,7 +124,7 @@ html {
 }
 ```
 
-### Custom font loading [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/custom)]
+### Custom font loading
 
 **Basic usage**
 
@@ -138,9 +134,8 @@ html {
 {
   fontLoader: {
     // Paste a new custom link here (for example Typekit)
-    url: 'https://new-custom-link/',
+    url: 'https://use.typekit.net/xxxxxxx.css',
 
-    // Enable options
     prefetch: true,
     preconnect: true
   }
@@ -157,7 +152,7 @@ html {
 }
 ```
 
-### Multiple sources usage example [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/multiple-sources)]
+### Multiple sources usage example
 
 ✅ Automatically sets the best settings based on your `url` option
 
@@ -169,7 +164,7 @@ html {
     url: {
       local: '/fonts/font-face.css',
       google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
-      custom: 'https://new-custom-link/'
+      custom: 'https://use.typekit.net/xxxxxxx.css'
     }
   }
 }
@@ -195,7 +190,7 @@ h1 {
 }
 ```
 
-### Advanced usage example [[link](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/advanced)]
+### Advanced usage example
 
 ⚠️ Use these methods only if you want to customize the `default` settings (optional)
 
