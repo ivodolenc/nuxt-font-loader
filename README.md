@@ -24,7 +24,7 @@ Simple, modern and lightweight font loader for Nuxt projects
 1. Add `nuxt-font-loader` dependency to your project
 
 ```bash
-$ npm install --save-dev nuxt-font-loader
+$ npm install --save-dev nuxt-font-loader # yarn add --dev nuxt-font-loader
 ```
 
 2. Add `nuxt-font-loader` to the `buildModules` section of `nuxt.config.js`
@@ -47,9 +47,7 @@ export default {
 
 - [Local](https://codesandbox.io/s/example-nuxt-font-loader-local-drpnf)
 - [Google](https://codesandbox.io/s/example-nuxt-font-loader-google-btkvl)
-- [Custom](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/custom)
 - [Multiple sources](https://codesandbox.io/s/example-nuxt-font-loader-multiple-ho9ty)
-- [Advanced](https://github.com/ivodolenc/nuxt-examples/tree/master/nuxt-font-loader/advanced)
 
 ### Local font loading
 
@@ -343,9 +341,10 @@ Eliminates render-blocking effect and improves site performance by loading the f
 ## Links
 
 - [The Fastest Google Fonts](https://csswizardry.com/2020/05/the-fastest-google-fonts/)
-- [The Simplest Way to Load CSS Asynchronously](https://www.filamentgroup.com/lab/load-css-simpler/)
 
 ## License
+
+**Nuxt Font Loader**
 
 [MIT License](LICENSE)
 

@@ -244,9 +244,9 @@ export default function fontLoader(moduleOptions) {
 
   if (options.stylesheet) {
     addPlugin({
-      src: resolve(__dirname, 'plugin.js'),
-      ssr: false,
+      src: resolve(__dirname, '../templates/plugin.js'),
       fileName: 'fontLoader.js',
+      ssr: false,
       options
     })
   }
