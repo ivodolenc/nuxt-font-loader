@@ -1,5 +1,5 @@
 export default function () {
-  window.onNuxtReady(() => {
+  window.<%= globals.readyCallback %>(() => {
     <% if (typeof options.url === 'string') { %>
       const link = document.createElement('link')
       link.rel = 'stylesheet'
