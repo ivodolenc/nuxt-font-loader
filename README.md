@@ -1,10 +1,10 @@
 <p align="center">
-    <img src=".github/assets/cover.svg" >
+    <img src=".github/assets/cover22.svg" >
 </p>
 
 <h1>Nuxt Font Loader</h1>
 
-Simple, modern and lightweight font loader for Nuxt projects
+Simple, modern and lightweight font loader for Nuxt projects.
 
 ## Features
 
@@ -19,15 +19,15 @@ Simple, modern and lightweight font loader for Nuxt projects
 - Supports loading `multiple` font sources at the same time
 - Fully `customizable` settings for advanced usage
 
-## Setup
+## Quick Start
 
-1. Add `nuxt-font-loader` dependency to your project
+1. Install `nuxt-font-loader` dependency to your project
 
 ```bash
-$ npm install --save-dev nuxt-font-loader # yarn add --dev nuxt-font-loader
+$ yarn add -D nuxt-font-loader # or npm i -D nuxt-font-loader
 ```
 
-2. Add `nuxt-font-loader` to the `buildModules` section of `nuxt.config.js`
+2. Enable `nuxt-font-loader` in the `buildModules` section
 
 ```js
 // nuxt.config.js
@@ -41,9 +41,11 @@ export default {
 }
 ```
 
+That's it! Start developing your app!
+
 ## Examples
 
-💻 Here are some code examples
+Here are some code examples
 
 - [Local](https://codesandbox.io/s/example-nuxt-font-loader-local-drpnf)
 - [Google](https://codesandbox.io/s/example-nuxt-font-loader-google-btkvl)
@@ -51,22 +53,18 @@ export default {
 
 ### Local font loading
 
-**Basic usage**
-
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
     url: '/fonts/font-face.css'
   }
 }
 ```
 
-**font-face.css**
-
 ```css
-/* Define @font-face rules */
+/* font-face.css */
 
 @font-face {
   font-family: 'Inter';
@@ -85,8 +83,6 @@ export default {
 }
 ```
 
-**Specify families**
-
 ```css
 /* Specify the font-family as usual */
 
@@ -97,14 +93,12 @@ html {
 
 ### Google font loading
 
-**Basic usage**
-
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
-    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+    url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
 
     prefetch: true,
     preconnect: true
@@ -112,24 +106,20 @@ html {
 }
 ```
 
-**Specify families**
-
 ```css
 /* Specify the font family as usual */
 
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 ```
 
 ### Custom font loading
 
-**Basic usage**
-
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
     // Paste a new custom link here (for example Typekit)
     url: 'https://use.typekit.net/xxxxxxx.css',
@@ -139,8 +129,6 @@ html {
   }
 }
 ```
-
-**Specify families**
 
 ```css
 /* Specify the font family as usual */
@@ -152,25 +140,21 @@ html {
 
 ### Multiple sources usage example
 
-✅ Automatically sets the best settings based on your `url` option
+Automatically sets the best settings based on your `url` option
 
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
     url: {
       local: '/fonts/font-face.css',
-      google: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+      google: 'https://fonts.googleapis.com/css2?family=Manrope&display=swap',
       custom: 'https://use.typekit.net/xxxxxxx.css'
     }
   }
 }
 ```
-
-> Use this method if you want to load multiple font sources at the same time
-
-**Specify families**
 
 ```css
 /* Specify the font family as usual */
@@ -190,30 +174,30 @@ h1 {
 
 ### Advanced usage example
 
-⚠️ Use these methods only if you want to customize the `default` settings (optional)
+Use these methods only if you want to customize the `default` settings (optional)
 
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
-    url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+    url: 'https://fonts.googleapis.com/css2?family=Poppins&display=swap',
 
     prefetch: {
-      hid: 'my-font-prefetch',
+      hid: 'my-font-prefetch'
     },
 
     preconnect: {
       hid: 'my-font-preconnect',
-      crossorigin: 'anonymous',
+      crossorigin: 'anonymous'
     },
 
     preload: {
-      hid: 'my-font-preload',
+      hid: 'my-font-preload'
     },
 
     noscript: {
-      hid: 'my-font-noscript',
+      hid: 'my-font-noscript'
     }
   }
 }
@@ -222,7 +206,7 @@ h1 {
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
     url: {
       local: '/fonts/font-face.css'
@@ -243,46 +227,44 @@ h1 {
 }
 ```
 
-> ⚙️ Following these examples, it is possible to customize all settings as needed
+> Following these examples, it is possible to customize all settings as needed
 
-## Options
+## Module Options
 
-**Default options**
+Here are all the `default` options that can be used for customization:
 
 ```js
 // nuxt.config.js
 
-{
+export default {
   fontLoader: {
     url: {
       local: undefined,
       google: undefined,
-      custom: undefined,
+      custom: undefined
     },
     prefetch: false,
     preconnect: false,
     preload: {},
     noscript: {},
-    stylesheet: true,
+    stylesheet: true
   }
 }
 ```
 
-### `url`
+### url
 
 - Default: `{}`
 
-Defines the path of the css file that includes all @font-face rules.
+Defines the path of the css file that includes all `@font-face` rules. **This option is required.**
 
-> ⚠️ This option is required.
-
-### `prefetch`
+### prefetch
 
 - Default: `false`
 
 Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
 
-> ✅ When used with multiple sources method, this is enabled by default
+When used with multiple sources method, this is enabled by default.
 
 ```html
 <link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
@@ -290,13 +272,13 @@ Enable this if you request fonts from a third-party server, such as Google, Type
 
 [More info](https://www.w3.org/TR/resource-hints/#dns-prefetch)
 
-### `preconnect`
+### preconnect
 
 - Default: `false`
 
 Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
 
-> ✅ When used with multiple sources method, this is enabled by default
+When used with multiple sources method, this is enabled by default.
 
 ```html
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
@@ -304,7 +286,7 @@ Enable this if you request fonts from a third-party server, such as Google, Type
 
 [More info](https://www.w3.org/TR/resource-hints/#preconnect)
 
-### `preload`
+### preload
 
 - Default: `{}`
 
@@ -316,7 +298,7 @@ Preloads a css file to increase its priority.
 
 [More info](https://www.w3.org/TR/preload/#introduction)
 
-### `noscript`
+### noscript
 
 - Default: `{}`
 
@@ -328,7 +310,7 @@ Provides a fallback option in case the user disables javascript.
 
 [More info](https://www.w3schools.com/tags/tag_noscript.asp)
 
-### `stylesheet`
+### stylesheet
 
 - Default: `true`
 
