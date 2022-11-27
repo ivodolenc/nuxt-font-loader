@@ -1,9 +1,9 @@
+.DS_Store
 node_modules
-*.iml
-.idea
+.private
 *.log*
 .nuxt
-.vscode
-.DS_STORE
-coverage
+.output
+.cache
+.env
 dist

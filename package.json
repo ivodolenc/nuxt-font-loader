@@ -4,42 +4,63 @@
   "description": "Simple, modern and lightweight font loader for Nuxt projects.",
   "author": "Ivo Dolenc",
   "license": "MIT",
+  "repository": "ivodolenc/nuxt-font-loader",
   "homepage": "https://github.com/ivodolenc/nuxt-font-loader",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivodolenc/nuxt-font-loader.git"
+  "funding": "https://github.com/sponsors/ivodolenc",
+  "type": "module",
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
   },
-  "bugs": {
-    "url": "https://github.com/ivodolenc/nuxt-font-loader/issues"
-  },
-  "main": "src/index.js",
   "files": [
-    "src",
-    "templates"
+    "dist"
   ],
   "keywords": [
     "nuxt",
-    "nuxtjs",
     "nuxt-module",
-    "nuxt-font",
-    "webfont",
+    "nuxt-font-loader",
+    "nuxt-font-preload",
+    "font-preload",
     "font-loader",
-    "nuxt-font-loader"
+    "nuxt-font"
   ],
   "scripts": {
-    "release": "standard-version && git push --follow-tags && npm publish",
-    "lint:eslint": "eslint --ext .js .",
-    "lint:all:eslint": "yarn lint:eslint --fix"
+    "dev": "nuxt dev playground",
+    "generate:play": "nuxt generate playground",
+    "preview:play": "nuxt preview playground",
+    "build:play": "nuxt build playground",
+    "build:module": "nuxt-module-build",
+    "release": "tsx scripts/release.ts",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepublishOnly": "npm run build:module"
+  },
+  "dependencies": {
+    "logzy": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/eslint-parser": "^7.18.2",
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
-    "eslint": "^8.17.0",
+    "@nuxt/kit": "^3.0.0",
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.0.0",
+    "@types/prompts": "^2.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.1",
-    "prettier": "^2.6.2",
-    "standard-version": "^9.5.0"
-  }
+    "nuxt": "^3.0.0",
+    "prettier": "^2.8.0",
+    "prompts": "^2.4.2",
+    "typescript": "^4.9.3"
+  },
+  "eslintConfig": {
+    "extends": "./.config/eslint.config.cjs"
+  },
+  "prettier": "./.config/prettier.config.cjs"
 }

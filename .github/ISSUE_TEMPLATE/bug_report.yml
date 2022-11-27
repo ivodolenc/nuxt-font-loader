@@ -32,7 +32,7 @@ body:
     attributes:
       label: Version
       description: Specify the exact version.
-      placeholder: '0.0.1'
+      placeholder: '1.0.0'
   - type: markdown
     attributes:
       value: |

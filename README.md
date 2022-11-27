@@ -1,333 +1,299 @@
-<p align="center">
-    <img src=".github/assets/cover22.svg" >
-</p>
+<h1 align="center">Nuxt Font Loader</h1>
 
-<h1>Nuxt Font Loader</h1>
-
-Simple, modern and lightweight font loader for Nuxt projects.
+<p align="center">Simple, modern and lightweight font loader for Nuxt projects.</p>
 
 ## Features
 
-- Supports `all` types of font loading 🔥 (local, Google, Typekit, custom, etc.)
-- Follows the best practice for `modern`, `fast` and `efficient` font loading
-- Eliminates render-blocking resources and improves site performance by loading the font css asynchronously
-- Includes settings for resource hints `prefetch`, `preconnect` and `preload`
-- Super-easy to use without complicated settings and additional code bloat
-- Minimal working configuration with just one line of code 🤯
-- Tested in `dev` and `prod` mode (supports SPA & SSR)
-- Automatically sets the best settings based on your `url` option
-- Supports loading `multiple` font sources at the same time
-- Fully `customizable` settings for advanced usage
+- Helps you to easily load fonts on your site
+- Follows modern methods and practices
+- Updated to Nuxt 3 Stable
+- TypeScript friendly
+- Super-easy to use
 
 ## Quick Start
 
-1. Install `nuxt-font-loader` dependency to your project
+1. Install `nuxt-font-loader` to your project
 
-```bash
-$ yarn add -D nuxt-font-loader # or npm i -D nuxt-font-loader
+```sh
+npm i -D nuxt-font-loader
 ```
 
-2. Enable `nuxt-font-loader` in the `buildModules` section
+2. Enable `nuxt-font-loader` via the `modules` option
 
 ```js
-// nuxt.config.js
+// nuxt.config.ts
 
-export default {
-  buildModules: ['nuxt-font-loader'],
+{
+  modules: ['nuxt-font-loader'],
 
   fontLoader: {
-    /* module options */
+    local: [
+      {
+        src: '/new-font.woff2',
+        family: 'Family Name'
+      }
+    ]
   }
 }
 ```
 
 That's it! Start developing your app!
 
-## Examples
+## Font Loading
 
-Here are some code examples
+The new `nuxt-font-loader` module brings an updated font loading system to your project. All customizations are now defined in the main `nuxt.config.ts` file so it's easier to use.
 
-- [Local](https://codesandbox.io/s/example-nuxt-font-loader-local-drpnf)
-- [Google](https://codesandbox.io/s/example-nuxt-font-loader-google-btkvl)
-- [Multiple sources](https://codesandbox.io/s/example-nuxt-font-loader-multiple-ho9ty)
+At the moment, the `self-host` method is most recommended for handling fonts. In other words, it means that you can optimally load web fonts with performance, flexibility and privacy in mind.
 
-### Local font loading
+Download all fonts and serve them from the same _domain_ as your deployment to avoid _third-party_ server requests and potential _privacy_ issues.
 
-```js
-// nuxt.config.js
+## Usage
 
-export default {
-  fontLoader: {
-    url: '/fonts/font-face.css'
-  }
-}
-```
+Place the previously downloaded fonts in the `public/fonts/` directory.
 
-```css
-/* font-face.css */
+The `local` option accepts an array of objects so you can specify as many fonts as you like.
 
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/I-300.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/I-400.woff2') format('woff2');
-}
-```
-
-```css
-/* Specify the font-family as usual */
-
-html {
-  font-family: 'Inter', sans-serif;
-}
-```
-
-### Google font loading
+Here are simple example:
 
 ```js
-// nuxt.config.js
+// nuxt.config.ts
 
-export default {
+{
   fontLoader: {
-    url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
-
-    prefetch: true,
-    preconnect: true
-  }
-}
-```
-
-```css
-/* Specify the font family as usual */
-
-html {
-  font-family: 'Inter', sans-serif;
-}
-```
-
-### Custom font loading
-
-```js
-// nuxt.config.js
-
-export default {
-  fontLoader: {
-    // Paste a new custom link here (for example Typekit)
-    url: 'https://use.typekit.net/xxxxxxx.css',
-
-    prefetch: true,
-    preconnect: true
-  }
-}
-```
-
-```css
-/* Specify the font family as usual */
-
-html {
-  font-family: 'New Custom Family', sans-serif;
-}
-```
-
-### Multiple sources usage example
-
-Automatically sets the best settings based on your `url` option
-
-```js
-// nuxt.config.js
-
-export default {
-  fontLoader: {
-    url: {
-      local: '/fonts/font-face.css',
-      google: 'https://fonts.googleapis.com/css2?family=Manrope&display=swap',
-      custom: 'https://use.typekit.net/xxxxxxx.css'
-    }
-  }
-}
-```
-
-```css
-/* Specify the font family as usual */
-
-html {
-  font-family: 'Inter', sans-serif; /* Local */
-}
-
-nav {
-  font-family: 'Roboto', sans-serif; /* Google */
-}
-
-h1 {
-  font-family: 'New Custom Family', sans-serif; /* Custom */
-}
-```
-
-### Advanced usage example
-
-Use these methods only if you want to customize the `default` settings (optional)
-
-```js
-// nuxt.config.js
-
-export default {
-  fontLoader: {
-    url: 'https://fonts.googleapis.com/css2?family=Poppins&display=swap',
-
-    prefetch: {
-      hid: 'my-font-prefetch'
-    },
-
-    preconnect: {
-      hid: 'my-font-preconnect',
-      crossorigin: 'anonymous'
-    },
-
-    preload: {
-      hid: 'my-font-preload'
-    },
-
-    noscript: {
-      hid: 'my-font-noscript'
-    }
-  }
-}
-```
-
-```js
-// nuxt.config.js
-
-export default {
-  fontLoader: {
-    url: {
-      local: '/fonts/font-face.css'
-    },
-
-    preload: {
-      local: {
-        hid: 'my-font-preload'
+    local: [
+      {
+        src: '/fonts/Aspekta.woff2',
+        family: 'Aspekta',
+        class: 'font-aspekta' // optional
       }
-    },
-
-    noscript: {
-      local: {
-        hid: 'my-font-noscript'
-      }
-    }
+    ]
   }
 }
 ```
 
-> Following these examples, it is possible to customize all settings as needed
+That's it! You can now use it in the _templates_ like this:
+
+```html
+<template>
+  <h1 class="font-aspekta">Nuxt Font Loader</h1>
+</template>
+```
+
+### Multiple sources
+
+```js
+// nuxt.config.ts
+
+{
+  fontLoader: {
+    local: [
+      {
+        src: '/fonts/Aspekta-300.woff2',
+        family: 'Aspekta',
+        weight: '300'
+      },
+      {
+        src: '/fonts/Aspekta-400.woff2',
+        family: 'Aspekta',
+        weight: '400'
+      },
+      {
+        src: '/fonts/Aspekta-500.woff2',
+        family: 'Aspekta',
+        weight: '500'
+      }
+    ]
+  }
+}
+```
 
 ## Module Options
 
-Here are all the `default` options that can be used for customization:
+The module has been completely rewritten so it's _typescript_ friendly.
+
+It also improves the development experience with detailed descriptions, examples, and auto-hinted configuration right in the code editor.
+
+### Defaults
 
 ```js
-// nuxt.config.js
+// nuxt.config.ts
 
-export default {
+{
   fontLoader: {
-    url: {
-      local: undefined,
-      google: undefined,
-      custom: undefined
-    },
-    prefetch: false,
-    preconnect: false,
-    preload: {},
-    noscript: {},
-    stylesheet: true
+    local: []
   }
 }
 ```
 
-### url
+### local
 
-- Default: `{}`
+- Type: `object[]`
+- Default: `[]`
 
-Defines the path of the css file that includes all `@font-face` rules. **This option is required.**
+An array of objects that specifies local font sources. Each object is treated as a separate block of rules.
 
-### prefetch
+```js
+// nuxt.config.ts
 
-- Default: `false`
-
-Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
-
-When used with multiple sources method, this is enabled by default.
-
-```html
-<link rel="dns-prefetch" href="https://fonts.gstatic.com/" />
+{
+  fontLoader: {
+    local: [
+      {
+        src: '/fonts/AspektaVF.woff2',
+        family: 'Aspekta Variable',
+        weight: '100 900',
+        class: 'font-aspekta'
+      }
+    ]
+  }
+}
 ```
 
-[More info](https://www.w3.org/TR/resource-hints/#dns-prefetch)
+### local.src
 
-### preconnect
+- Type: `string`
+- Required: `true`
 
-- Default: `false`
+Specifies path to the font file.
 
-Enable this if you request fonts from a third-party server, such as Google, Typekit, etc.
-
-When used with multiple sources method, this is enabled by default.
-
-```html
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+```js
+{
+  src: '/path/to/font.woff2'
+}
 ```
 
-[More info](https://www.w3.org/TR/resource-hints/#preconnect)
+### local.family
 
-### preload
+- Type: `string`
+- Required: `true`
 
-- Default: `{}`
+Defines the font family name.
 
-Preloads a css file to increase its priority.
-
-```html
-<link rel="preload" as="style" href="/path/to/font-face.css" />
+```js
+{
+  family: 'Family Name'
+}
 ```
 
-[More info](https://www.w3.org/TR/preload/#introduction)
+### local.weight
 
-### noscript
+- Type: `string`
+- Default: `400`
 
-- Default: `{}`
+Defines the font weight.
 
-Provides a fallback option in case the user disables javascript.
-
-```html
-<noscript><link rel="stylesheet" href="/path/to/font-face.css" /></noscript>
+```js
+{
+  // static weight
+  weight: '300'
+}
 ```
 
-[More info](https://www.w3schools.com/tags/tag_noscript.asp)
-
-### stylesheet
-
-- Default: `true`
-
-Eliminates render-blocking effect and improves site performance by loading the font css asynchronously.
-
-```html
-<link rel="stylesheet" href="/path/to/font-face.css" />
+```js
+{
+  // variable weight range
+  weight: '100 900'
+}
 ```
 
-## Links
+### local.display
 
-- [The Fastest Google Fonts](https://csswizardry.com/2020/05/the-fastest-google-fonts/)
+- Type: `string`
+- Default: `optional`
+- Auto-hinted
+
+Specifies how a font face is displayed.
+
+```js
+{
+  display: 'swap'
+}
+```
+
+### local.style
+
+- Type: `string`
+- Default: `normal`
+- Auto-hinted
+
+Defines the font style.
+
+```js
+{
+  style: 'normal'
+}
+```
+
+### local.class
+
+- Type: `string`
+- Default: `undefined`
+
+Defines the global css _class_ for the current source.
+
+```js
+{
+  class: 'my-font'
+}
+```
+
+Example above will generate global css class:
+
+```css
+.my-font {
+  font-family: 'family-name';
+}
+```
+
+So it can be used in templates:
+
+```html
+<h1 class="my-font">Font Loader</h1>
+```
+
+### local.variable
+
+- Type: `string`
+- Default: `undefined`
+
+Defines the global css _variable_ for the current source.
+
+```js
+{
+  variable: 'my-font'
+}
+```
+
+Example above will generate global css variable:
+
+```css
+:root {
+  --my-font: 'family-name';
+}
+```
+
+So it can be used in templates:
+
+```css
+h1 {
+  font-family: var(--my-font);
+}
+```
+
+## Show Support
+
+This is a free and open source project available to everyone. If you like it, `leave a star` to show your support.
+
+### Starring a repository
+
+Navigate to the top-right corner of the page and click the <kbd>☆ Star</kbd> button.
 
 ## License
 
-**Nuxt Font Loader**
+### Nuxt Font Loader
 
 [MIT License](LICENSE)
 
-Copyright (c) Ivo Dolenc
+Copyright © Ivo Dolenc
+
+Developed in Croatia 🇭🇷
