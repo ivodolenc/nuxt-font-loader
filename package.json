@@ -32,15 +32,14 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
+    "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
-    "build:play": "nuxt build playground",
     "build:module": "nuxt-module-build",
     "release": "tsx scripts/release.ts",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "prepublishOnly": "npm run build:module"
+    "fix": "eslint --fix ."
   },
   "dependencies": {
     "logzy": "^2.0.0"
@@ -50,8 +49,8 @@
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
     "@types/prompts": "^2.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
-    "@typescript-eslint/parser": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "nuxt": "^3.0.0",
