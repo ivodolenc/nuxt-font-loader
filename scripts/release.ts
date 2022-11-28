@@ -37,7 +37,7 @@ async function updatePackageVersion() {
 
 async function commitChanges(nv: string | null) {
   const files = `package.json package-lock.json`
-  const command = `git add ${files} && git commit --no-verify -m 'chore(release): ${nv}' && git push --no-verify && npm publish`
+  const command = `npm run build:module && git add ${files} && git commit --no-verify -m 'chore(release): ${nv}' && git push --no-verify && npm publish`
 
   const { answer } = await prompts(
     {
