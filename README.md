@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".assets/cover.png" />
+</p>
+
 # Nuxt Font Loader
 
 Simple, modern and lightweight font loader for Nuxt projects.
