@@ -1,7 +1,3 @@
-<p align="center">
-  <img src=".assets/cover.png" />
-</p>
-
 # Nuxt Font Loader
 
 Simple, modern and lightweight font loader for Nuxt projects.
@@ -54,11 +50,17 @@ At the moment, the `self-host` _(i.e. local)_ method is most recommended for han
 
 Download all fonts and serve them from the same _domain_ as your deployment to avoid _third-party_ server requests and potential _privacy_ issues.
 
+## Optimization
+
+The module automatically optimizes all your font sources and improves page loading speed.
+
+Depending on the strategy, either `local` or `external`, the module adds _preconnect_ and _preload_ link tags to the `<head>` section with minified inline styles for `@font-face` rules.
+
+So you don't have to worry about optimization at all since the module will do all the work under the hood.
+
 ## Local Strategy
 
 Place the previously downloaded fonts in the `public/fonts/` directory and specify the path to the local font files.
-
-The module will automatically _preload_ sources so there is no need for additional customization.
 
 ```js
 // nuxt.config.ts
@@ -116,8 +118,6 @@ You can now use it in the _templates_ like this:
 
 To load fonts directly from third-party servers use `external` option.
 
-The module will automatically detect servers and _preload_ sources accordingly so you don't have to worry about it.
-
 ```js
 // nuxt.config.ts
 
@@ -142,7 +142,7 @@ You can now use it in the _templates_ like this:
 </template>
 ```
 
-## Module Options
+## Options
 
 Nuxt Font Loader has been completely rewritten so it's _typescript_ friendly.
 
