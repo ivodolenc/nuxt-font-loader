@@ -6,6 +6,7 @@ Simple, modern and lightweight font loader for Nuxt projects.
 
 - Helps you to easily load fonts on your site
 - Supports _local_ and _external_ loading strategies
+- Provides _font composables_
 - Follows modern methods and practices
 - Updated to Nuxt 3 Stable
 - TypeScript friendly
@@ -40,25 +41,45 @@ npm i -D nuxt-font-loader
 
 That's it! Start developing your app!
 
-## Font Loading
-
-The new `nuxt-font-loader` module brings an updated font loading strategies to your project. All customizations are now defined in the main _nuxt.config.ts_ file so it's easier to use.
-
-Also, the module supports popular methods for loading fonts on your site. You can use the `local` method, also called `self-host`, or you can load `external` font sources directly from third-party servers, such as Google, Typekit, etc.
-
-At the moment, the `self-host` _(i.e. local)_ method is most recommended for handling fonts. In other words, it means that you can optimally load web fonts with performance, flexibility and privacy in mind.
-
-Download all fonts and serve them from the same _domain_ as your deployment to avoid _third-party_ server requests and potential _privacy_ issues.
-
 ## Optimization
 
-The module automatically optimizes all your font sources and improves page loading speed.
+The `nuxt-font-loader` brings an updated font loading strategies to your project. It automatically optimizes all your font sources and improves page loading speed.
 
 Depending on the strategy, either `local` or `external`, the module adds _preconnect_ and _preload_ link tags to the `<head>` section with minified inline styles for `@font-face` rules.
 
 So you don't have to worry about optimization at all since the module will do all the work under the hood.
 
+## Font Composables
+
+The module also provides custom functions designed to load fonts on a specific page only.
+
+Using this composables, the font sources will not be loaded globally, but only on the page from which the function is called.
+
+This can be super useful if you want to change fonts for different _pages_ or _layouts_.
+
+By default, _font composables_ are not automatically imported, but you can enable this via module option.
+
+```js
+// nuxt.config.ts
+
+{
+  fontLoader: {
+    autoImport: true // Enables auto-import feature
+  }
+}
+```
+
+If enabled, you can use _font composables_ across your application without explicitly importing them.
+
 ## Local Strategy
+
+Loads fonts from the same domain as your deployment.
+
+At the moment, this is the most recommended method for handling fonts. You can optimally load fonts with _performance_, _flexibility_ and _privacy_ in mind.
+
+Also, try to use _variable_ fonts whenever you can to take advantage of their customization and fast loading speed.
+
+### Global Settings
 
 Place the previously downloaded fonts in the `public/fonts/` directory and specify the path to the local font files.
 
@@ -86,37 +107,37 @@ You can now use it in the _templates_ like this:
 </template>
 ```
 
-### Multiple sources
+### Font Composable
 
-```js
-// nuxt.config.ts
+Import the function where you need it.
 
-{
-  fontLoader: {
-    local: [
-      {
-        src: '/fonts/Aspekta-300.woff2',
-        family: 'Aspekta',
-        weight: '300'
-      },
-      {
-        src: '/fonts/Aspekta-400.woff2',
-        family: 'Aspekta',
-        weight: '400'
-      },
-      {
-        src: '/fonts/Aspekta-500.woff2',
-        family: 'Aspekta',
-        weight: '500'
-      }
-    ]
-  }
-}
+```html
+<!-- index.vue -->
+
+<template>
+  <h1 class="font-aspekta">Nuxt Font Loader</h1>
+</template>
+
+<script setup lang="ts">
+  import { useLocalFont } from 'nuxt-font-loader/app'
+
+  useLocalFont([
+    {
+      src: '/fonts/Aspekta.woff2',
+      family: 'Aspekta',
+      class: 'font-aspekta' // optional
+    }
+  ])
+</script>
 ```
 
 ## External Strategy
 
-To load fonts directly from third-party servers use `external` option.
+Loads fonts directly from third-party servers, such as Google, Typekit, etc.
+
+### Global Settings
+
+Provide the full url to external font sources and adjust other options as needed.
 
 ```js
 // nuxt.config.ts
@@ -142,6 +163,30 @@ You can now use it in the _templates_ like this:
 </template>
 ```
 
+### Font Composable
+
+Import the function where you need it.
+
+```html
+<!-- index.vue -->
+
+<template>
+  <h1 class="font-inter">Nuxt Font Loader</h1>
+</template>
+
+<script setup lang="ts">
+  import { useExternalFont } from 'nuxt-font-loader/app'
+
+  useExternalFont([
+    {
+      src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
+      family: 'Inter',
+      class: 'font-inter' // optional
+    }
+  ])
+</script>
+```
+
 ## Options
 
 Nuxt Font Loader has been completely rewritten so it's _typescript_ friendly.
@@ -157,7 +202,7 @@ It also improves the development experience with detailed descriptions, examples
   fontLoader: {
     local: [],
     external: [],
-    logs: true
+    autoImport: false
   }
 }
 ```
@@ -469,16 +514,18 @@ h1 {
 }
 ```
 
-### logs
+### autoImport
 
 - Type: `boolean`
-- Default: `true`
+- Default: `false`
 
-Manages all terminal logs.
+Manages the built-in `auto-import` feature.
+
+If enabled, you can use _font composables_ across your application without explicitly importing them.
 
 ```js
 {
-  logs: true
+  autoImport: true
 }
 ```
 

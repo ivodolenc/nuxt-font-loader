@@ -8,14 +8,16 @@
   "homepage": "https://github.com/ivodolenc/nuxt-font-loader",
   "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
-  "main": "./dist/module.cjs",
-  "module": "./dist/module.mjs",
+  "main": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "types": "./dist/types.d.ts"
+    },
+    "./app": {
+      "import": "./dist/runtime/composables/index.mjs",
+      "types": "./dist/runtime/composables/index.d.ts"
     }
   },
   "files": [
@@ -36,17 +38,16 @@
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
     "build:module": "nuxt-module-build",
+    "prepublishOnly": "npm run build:module",
     "format": "prettier --write .",
     "lint": "eslint .",
     "fix": "eslint --fix ."
   },
   "dependencies": {
-    "logzy": "^2.0.0"
+    "@nuxt/kit": "^3.0.0"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0",
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",
