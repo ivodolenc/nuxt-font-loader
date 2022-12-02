@@ -119,7 +119,7 @@ Import the function where you need it.
 </template>
 
 <script setup lang="ts">
-  import { useLocalFont } from 'nuxt-font-loader/app'
+  import { useLocalFont } from '#font-loader'
 
   useLocalFont([
     {
@@ -175,7 +175,7 @@ Import the function where you need it.
 </template>
 
 <script setup lang="ts">
-  import { useExternalFont } from 'nuxt-font-loader/app'
+  import { useExternalFont } from '#font-loader'
 
   useExternalFont([
     {

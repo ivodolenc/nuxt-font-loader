@@ -14,10 +14,6 @@
     ".": {
       "import": "./dist/module.mjs",
       "types": "./dist/types.d.ts"
-    },
-    "./app": {
-      "import": "./dist/runtime/composables/index.mjs",
-      "types": "./dist/runtime/composables/index.d.ts"
     }
   },
   "files": [

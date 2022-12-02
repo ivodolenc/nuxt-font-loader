@@ -21,12 +21,13 @@ export default defineNuxtModule<ModuleOptions>({
     const { local, external, autoImport } = options
     const head = nuxt.options.app.head
 
+    const { resolve } = createResolver(import.meta.url)
+    nuxt.options.build.transpile.push(resolve('./runtime'))
+
+    const composables = resolve('./runtime/composables')
+    nuxt.options.alias['#font-loader'] = composables
+
     if (autoImport) {
-      const { resolve } = createResolver(import.meta.url)
-      nuxt.options.build.transpile.push(resolve('./runtime'))
-
-      const composables = resolve('./runtime/composables')
-
       addImports([
         {
           name: 'useLocalFont',
