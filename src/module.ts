@@ -1,7 +1,8 @@
-import { defineNuxtModule } from '@nuxt/kit'
-import { log } from 'logzy'
-import { generateLocalHead, generateExternalHead } from './utils'
+import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
+import { generateStyles } from './runtime/utils/generateStyles'
 import type { ModuleOptions } from './types'
+
+export * from './types'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -13,19 +14,96 @@ export default defineNuxtModule<ModuleOptions>({
   },
 
   defaults: {
-    logs: true
+    autoImport: false
   },
 
   setup(options, nuxt) {
-    const { local, external, logs } = options
+    const { local, external, autoImport } = options
+    const head = nuxt.options.app.head
 
-    if (!local && !external && logs) {
-      const warnMessage = `> nuxt-font-loader — The module is enabled but not configured. Set new font sources via module options.`
-      log(['magenta', 'bold'], warnMessage)
+    if (autoImport) {
+      const { resolve } = createResolver(import.meta.url)
+      nuxt.options.build.transpile.push(resolve('./runtime'))
+
+      const composables = resolve('./runtime/composables')
+
+      addImports([
+        {
+          name: 'useLocalFont',
+          from: composables
+        },
+        {
+          name: 'useExternalFont',
+          from: composables
+        }
+      ])
     }
 
-    if (local) generateLocalHead(local, nuxt)
+    if (local) {
+      const { fontFace, classes, root, format } = generateStyles(local)
+      const styles = `${fontFace}${classes}${root}`
 
-    if (external) generateExternalHead(external, nuxt)
+      for (const font of local) {
+        head.link?.push({
+          rel: 'preload',
+          as: 'font',
+          crossorigin: 'anonymous',
+          type: `font/${format}`,
+          href: font.src
+        })
+      }
+
+      head.style?.push({ children: styles })
+    }
+
+    if (external) {
+      const { classes, root } = generateStyles(external)
+      const styles = `${classes}${root}`
+
+      let google = false
+      let typekit = false
+
+      for (const font of external) {
+        if (font.src.includes('google') && !google) {
+          google = true
+
+          head.link?.push(
+            {
+              rel: 'preconnect',
+              href: 'https://fonts.googleapis.com'
+            },
+            {
+              rel: 'preconnect',
+              crossorigin: 'anonymous',
+              href: 'https://fonts.gstatic.com'
+            }
+          )
+        }
+
+        if (font.src.includes('typekit') && !typekit) {
+          typekit = true
+
+          head.link?.push({
+            rel: 'preconnect',
+            crossorigin: 'anonymous',
+            href: 'https://use.typekit.net'
+          })
+        }
+
+        head.link?.push(
+          {
+            rel: 'preload',
+            as: 'style',
+            href: font.src
+          },
+          {
+            rel: 'stylesheet',
+            href: font.src
+          }
+        )
+      }
+
+      if (styles) head.style?.push({ children: styles })
+    }
   }
 })

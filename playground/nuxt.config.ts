@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import Module from '..'
 
 export default defineNuxtConfig({
   telemetry: false,
@@ -7,7 +8,7 @@ export default defineNuxtConfig({
     autoImport: false
   },
 
-  modules: ['../src/module'],
+  modules: [Module],
 
   fontLoader: {
     local: [

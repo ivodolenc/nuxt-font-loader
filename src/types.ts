@@ -282,17 +282,27 @@ export interface ModuleOptions {
    */
   external?: ExternalOptions[]
   /**
-   * Manages all terminal logs.
+   * Manages the built-in `auto-import` feature.
    *
-   * @default true
+   * If enabled, you can use `font composables` across your application without explicitly importing them.
    *
-   * @since 2.1.0
+   * @since 2.2.0
    */
-  logs?: boolean
+  autoImport?: boolean
 }
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
+    /**
+     * Nuxt Font Loader
+     *
+     * Simple, modern and lightweight font loader for Nuxt projects.
+     *
+     * @see [source](https://github.com/ivodolenc/nuxt-font-loader)
+     */
+    fontLoader?: ModuleOptions
+  }
+  interface NuxtOptions {
     /**
      * Nuxt Font Loader
      *
