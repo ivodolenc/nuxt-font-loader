@@ -1,5 +1,5 @@
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
-import { generateStyles } from './runtime/utils/generateStyles'
+import { generateStyles, parseFormat } from './runtime/utils'
 import type { ModuleOptions } from './types'
 
 export * from './types'
@@ -41,15 +41,17 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     if (local) {
-      const { fontFace, classes, root, format } = generateStyles(local)
+      const { fontFace, classes, root } = generateStyles(local)
       const styles = `${fontFace}${classes}${root}`
 
       for (const font of local) {
+        const format = parseFormat(font.src)
+
         head.link?.push({
           rel: 'preload',
           as: 'font',
-          crossorigin: 'anonymous',
           type: `font/${format}`,
+          crossorigin: 'anonymous',
           href: font.src
         })
       }

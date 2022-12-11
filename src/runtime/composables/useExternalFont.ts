@@ -1,5 +1,5 @@
 import { useHead } from '#app'
-import { generateStyles } from '../utils/generateStyles'
+import { generateStyles } from '../utils'
 import type { ExternalOptions } from '../../types'
 
 /**
