@@ -1,7 +1,7 @@
 {
   "name": "nuxt-font-loader",
   "version": "2.2.1",
-  "description": "Simple, modern and lightweight font loader for Nuxt projects.",
+  "description": "Simple, modern and lightweight font loader for Nuxt.",
   "author": "Ivo Dolenc",
   "license": "MIT",
   "repository": "ivodolenc/nuxt-font-loader",
@@ -39,18 +39,15 @@
     "lint": "eslint .",
     "fix": "eslint --fix ."
   },
-  "dependencies": {
-    "@nuxt/kit": "^3.0.0"
-  },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "@typescript-eslint/parser": "^5.46.0",
+    "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "nuxt": "^3.0.0",
-    "prettier": "^2.8.0",
-    "typescript": "^4.9.3"
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
   },
   "eslintConfig": {
     "extends": "./.config/eslint.config.cjs"
