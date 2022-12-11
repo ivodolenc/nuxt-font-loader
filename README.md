@@ -1,6 +1,6 @@
 # Nuxt Font Loader
 
-Simple, modern and lightweight font loader for Nuxt projects.
+Simple, modern and lightweight font loader for Nuxt.
 
 ## Features
 
@@ -8,9 +8,10 @@ Simple, modern and lightweight font loader for Nuxt projects.
 - Supports _local_ and _external_ loading strategies
 - Provides _font composables_
 - Follows modern methods and practices
-- Updated to Nuxt 3 Stable
+- Designed for Nuxt 3+
 - TypeScript friendly
-- Super-easy to use
+- Super easy to use
+- No dependencies
 
 ## Quick Start
 
@@ -20,7 +21,7 @@ Simple, modern and lightweight font loader for Nuxt projects.
 npm i -D nuxt-font-loader
 ```
 
-2. Enable `nuxt-font-loader` via the `modules` option
+2. Enable the module in the main config file
 
 ```js
 // nuxt.config.ts
@@ -32,7 +33,8 @@ npm i -D nuxt-font-loader
     local: [
       {
         src: '/new-font.woff2',
-        family: 'Family Name'
+        family: 'Family Name',
+        class: 'font-new-font'
       }
     ]
   }
@@ -90,8 +92,9 @@ Place the previously downloaded fonts in the `public/fonts/` directory and speci
   fontLoader: {
     local: [
       {
-        src: '/fonts/Aspekta.woff2',
-        family: 'Aspekta',
+        src: '/fonts/AspektaVF.woff2',
+        family: 'Aspekta Variable',
+        weight: '100 900',
         class: 'font-aspekta' // optional
       }
     ]
@@ -123,8 +126,9 @@ Import the function where you need it.
 
   useLocalFont([
     {
-      src: '/fonts/Aspekta.woff2',
-      family: 'Aspekta',
+      src: '/fonts/AspektaVF.woff2',
+      family: 'Aspekta Variable',
+      weight: '100 900',
       class: 'font-aspekta' // optional
     }
   ])
@@ -137,7 +141,7 @@ Loads fonts directly from third-party servers, such as Google, Typekit, etc.
 
 ### Global Settings
 
-Provide the full url to external font sources and adjust other options as needed.
+Specify the full url to external font sources and adjust other options as needed.
 
 ```js
 // nuxt.config.ts
