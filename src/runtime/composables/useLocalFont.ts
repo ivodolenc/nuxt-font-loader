@@ -1,5 +1,5 @@
 import { useHead } from '#app'
-import { generateStyles } from '../utils/generateStyles'
+import { generateStyles, parseFormat } from '../utils'
 import type { LocalOptions } from '../../types'
 
 /**
@@ -22,16 +22,18 @@ import type { LocalOptions } from '../../types'
  * @since 2.2.0
  */
 export const useLocalFont = (local: LocalOptions[]) => {
-  const { fontFace, classes, root, format } = generateStyles(local)
+  const { fontFace, classes, root } = generateStyles(local)
   const styles = `${fontFace}${classes}${root}`
   const links: object[] = []
 
   for (const font of local) {
+    const format = parseFormat(font.src)
+
     links.push({
       rel: 'preload',
       as: 'font',
-      crossorigin: 'anonymous',
       type: `font/${format}`,
+      crossorigin: 'anonymous',
       href: font.src
     })
   }

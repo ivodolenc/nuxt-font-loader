@@ -1,3 +1,4 @@
+import { parseFormat } from './parseFormat'
 import type { LocalOptions, ExternalOptions } from '../../types'
 
 /**
@@ -10,7 +11,6 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
   let classes = ''
   let root = ''
   let variables = ''
-  let format = ''
 
   for (const font of fonts) {
     const options = {
@@ -20,8 +20,10 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
       ...font
     }
 
-    const [, srcFormat] = options.src.split(/\.(?=[^.]+$)/)
-    format = srcFormat
+    const srcFormat = parseFormat(options.src)
+    let format = srcFormat
+    if (srcFormat === 'ttf') format = 'truetype'
+    else if (srcFormat === 'otf') format = 'opentype'
 
     const fontFallback = options.fallback ? `,${options.fallback}` : ''
     const fontFamily = `font-family:"${options.family}";`
@@ -44,7 +46,6 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
   return {
     fontFace,
     classes,
-    root,
-    format
+    root
   }
 }
