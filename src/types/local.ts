@@ -118,4 +118,32 @@ export interface LocalOptions {
    * @default undefined
    */
   variable?: string
+  /**
+   * Specifies the `preload` links.
+   *
+   * @default true
+   */
+  preload?: boolean
+  /**
+   * Defines a specific range of characters to be used from the font.
+   *
+   * @example
+   *
+   * ```js
+   * {
+   *   preload: false,
+   *   display: 'swap',
+   *   unicodeRange: ['U+26']
+   * }
+   * ```
+   *
+   * Example above will generate:
+   *
+   * ```css
+   * font-face { font-display: swap; unicode-range: U+26; }
+   * ```
+   *
+   * @default undefined
+   */
+  unicode?: string[]
 }

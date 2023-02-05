@@ -19,7 +19,7 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
       style: 'normal',
       ...font
     }
-
+    const local = options as LocalOptions
     const srcFormat = parseFormat(options.src)
     let format = srcFormat
     if (srcFormat === 'ttf') format = 'truetype'
@@ -31,6 +31,8 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
     const fontDisplay = `font-display:${options.display};`
     const fontStyle = `font-style:${options.style};`
     const fontSrc = `src:url('${options.src}') format('${format}');`
+    let unicodes = ''
+    let fontUnicode = ''
 
     if (options.class)
       classes += `.${options.class}{font-family:"${options.family}"${fontFallback};}`
@@ -38,7 +40,12 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
     if (options.variable)
       variables += `--${options.variable}:"${options.family}"${fontFallback};`
 
-    fontFace += `@font-face{${fontFamily}${fontWeight}${fontDisplay}${fontStyle}${fontSrc}}`
+    if (local.unicode) {
+      for (const code of local.unicode) unicodes += `${code},`
+      fontUnicode = `unicode-range:${unicodes.replace(/,*$/, '')};`
+    }
+
+    fontFace += `@font-face{${fontFamily}${fontWeight}${fontDisplay}${fontStyle}${fontSrc}${fontUnicode}}`
   }
 
   if (variables) root += `:root{${variables}}`
