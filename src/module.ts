@@ -45,15 +45,22 @@ export default defineNuxtModule<ModuleOptions>({
       const styles = `${fontFace}${classes}${root}`
 
       for (const font of local) {
-        const format = parseFormat(font.src)
+        const options = {
+          preload: true,
+          ...font
+        }
 
-        head.link?.push({
-          rel: 'preload',
-          as: 'font',
-          type: `font/${format}`,
-          crossorigin: 'anonymous',
-          href: font.src
-        })
+        if (options.preload) {
+          const format = parseFormat(font.src)
+
+          head.link?.push({
+            rel: 'preload',
+            as: 'font',
+            type: `font/${format}`,
+            crossorigin: 'anonymous',
+            href: font.src
+          })
+        }
       }
 
       head.style?.push({ children: styles })

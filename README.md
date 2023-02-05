@@ -387,6 +387,43 @@ h1 {
 }
 ```
 
+### local.preload
+
+- Type: `boolean`
+- Default: `true`
+
+Specifies the _preload_ links.
+
+```js
+{
+  preload: true
+}
+```
+
+### local.unicode
+
+- Type: `string[]`
+- Default: `undefined`
+
+Defines a specific range of characters to be used from the font.
+
+```js
+{
+  preload: false, // Disables the preload link
+  display: 'swap', // or 'fallback', 'auto' ...
+  unicodeRange: ['U+26']
+}
+```
+
+Example above will generate:
+
+```css
+@font-face {
+  font-display: swap;
+  unicode-range: U+26;
+}
+```
+
 ### external
 
 - Type: `object[]`

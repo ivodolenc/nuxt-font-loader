@@ -27,18 +27,25 @@ export const useLocalFont = (local: LocalOptions[]) => {
   const links: object[] = []
 
   for (const font of local) {
-    const format = parseFormat(font.src)
+    const options = {
+      preload: true,
+      ...font
+    }
 
-    links.push({
-      rel: 'preload',
-      as: 'font',
-      type: `font/${format}`,
-      crossorigin: 'anonymous',
-      href: font.src
-    })
+    if (options.preload) {
+      const format = parseFormat(font.src)
+
+      links.push({
+        rel: 'preload',
+        as: 'font',
+        type: `font/${format}`,
+        crossorigin: 'anonymous',
+        href: font.src
+      })
+    }
   }
 
-  useHead({ link: links })
+  if (links.length) useHead({ link: links })
 
   return useHead({ style: [{ children: styles }] })
 }
