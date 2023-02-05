@@ -411,7 +411,7 @@ Defines a specific range of characters to be used from the font.
 {
   preload: false, // Disables the preload link
   display: 'swap', // or 'fallback', 'auto' ...
-  unicodeRange: ['U+26']
+  unicode: ['U+26']
 }
 ```
 

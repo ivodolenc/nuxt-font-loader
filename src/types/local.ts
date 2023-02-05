@@ -133,7 +133,7 @@ export interface LocalOptions {
    * {
    *   preload: false,
    *   display: 'swap',
-   *   unicodeRange: ['U+26']
+   *   unicode: ['U+26']
    * }
    * ```
    *
