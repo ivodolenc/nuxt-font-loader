@@ -13,6 +13,15 @@ Simple, modern and lightweight font loader for Nuxt.
 - Super easy to use
 - No dependencies
 
+## Size Info
+
+<h6>Zero-dependencies — Tree-shakeable</h6>
+
+- **Core:** `~2kB` minified
+- **Composables (optional)**
+  - **useLocalFont:** `~1.2kB` minified
+  - **useExternalFont:** `~1.4kB` minified
+
 ## Quick Start
 
 1. Install `nuxt-font-loader` to your project
@@ -59,14 +68,14 @@ Using this composables, the font sources will not be loaded globally, but only o
 
 This can be super useful if you want to change fonts for different _pages_ or _layouts_.
 
-By default, _font composables_ are not automatically imported, but you can enable this via module option.
+By default, _font composables_ are not automatically imported since they are optional, but you can enable this via module option.
 
 ```js
 // nuxt.config.ts
 
 {
   fontLoader: {
-    autoImport: true // Enables auto-import feature
+    autoImport: true // enables auto-import feature
   }
 }
 ```
@@ -95,7 +104,7 @@ Place the previously downloaded fonts in the `public/fonts/` directory and speci
         src: '/fonts/AspektaVF.woff2',
         family: 'Aspekta Variable',
         weight: '100 900',
-        class: 'font-aspekta' // optional
+        class: 'font-aspekta'
       }
     ]
   }
@@ -129,7 +138,7 @@ Import the function where you need it.
       src: '/fonts/AspektaVF.woff2',
       family: 'Aspekta Variable',
       weight: '100 900',
-      class: 'font-aspekta' // optional
+      class: 'font-aspekta'
     }
   ])
 </script>
@@ -152,7 +161,7 @@ Specify the full url to external font sources and adjust other options as needed
       {
         src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
         family: 'Inter',
-        class: 'font-inter' // optional
+        class: 'font-inter'
       }
     ]
   }
@@ -185,7 +194,7 @@ Import the function where you need it.
     {
       src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
       family: 'Inter',
-      class: 'font-inter' // optional
+      class: 'font-inter'
     }
   ])
 </script>
@@ -193,7 +202,7 @@ Import the function where you need it.
 
 ## Options
 
-Nuxt Font Loader has been completely rewritten so it's _typescript_ friendly.
+Nuxt Font Loader has been completely rewritten so it's _TypeScript_ friendly.
 
 It also improves the development experience with detailed descriptions, examples, and auto-hinted configuration right in the code editor.
 
@@ -211,7 +220,7 @@ It also improves the development experience with detailed descriptions, examples
 }
 ```
 
-### local
+## local
 
 - Type: `object[]`
 - Default: `[]`
@@ -224,18 +233,33 @@ Each object is treated as a separate block of rules.
 // nuxt.config.ts
 
 {
-  local: [
-    {
-      src: '/fonts/AspektaVF.woff2',
-      family: 'Aspekta Variable',
-      weight: '100 900',
-      class: 'font-aspekta'
-    }
-  ]
+  fontLoader: {
+    local: [
+      {
+        src: '/fonts/AspektaVF.woff2',
+        family: 'Aspekta Variable',
+        weight: '100 900',
+        class: 'font-aspekta' // optional
+      }
+    ]
+  }
 }
 ```
 
-### local.src
+### preload
+
+- Type: `boolean`
+- Default: `true`
+
+Specifies the _preload_ links.
+
+```js
+{
+  preload: true
+}
+```
+
+### src
 
 - Type: `string`
 - Required: `true`
@@ -248,7 +272,7 @@ Specifies path to the font file.
 }
 ```
 
-### local.family
+### family
 
 - Type: `string`
 - Required: `true`
@@ -261,7 +285,7 @@ Defines the font family name.
 }
 ```
 
-### local.fallback
+### fallback
 
 - Type: `string`
 - Default: `undefined`
@@ -282,7 +306,7 @@ Example above will generate the font fallback:
 }
 ```
 
-### local.weight
+### weight
 
 - Type: `string`
 - Default: `400`
@@ -303,7 +327,7 @@ Defines the font weight.
 }
 ```
 
-### local.display
+### display
 
 - Type: `string`
 - Default: `optional`
@@ -317,7 +341,7 @@ Specifies how a font face is displayed.
 }
 ```
 
-### local.style
+### style
 
 - Type: `string`
 - Default: `normal`
@@ -331,7 +355,7 @@ Defines the font style.
 }
 ```
 
-### local.class
+### class
 
 - Type: `string`
 - Default: `undefined`
@@ -358,7 +382,7 @@ So it can be used in templates:
 <h1 class="my-font">Font Loader</h1>
 ```
 
-### local.variable
+### variable
 
 - Type: `string`
 - Default: `undefined`
@@ -387,20 +411,7 @@ h1 {
 }
 ```
 
-### local.preload
-
-- Type: `boolean`
-- Default: `true`
-
-Specifies the _preload_ links.
-
-```js
-{
-  preload: true
-}
-```
-
-### local.unicode
+### unicode
 
 - Type: `string[]`
 - Default: `undefined`
@@ -409,7 +420,7 @@ Defines a specific range of characters to be used from the font.
 
 ```js
 {
-  preload: false, // Disables the preload link
+  preload: false, // disables the preload link
   display: 'swap', // or 'fallback', 'auto' ...
   unicode: ['U+26']
 }
@@ -424,7 +435,7 @@ Example above will generate:
 }
 ```
 
-### external
+## external
 
 - Type: `object[]`
 - Default: `[]`
@@ -439,17 +450,19 @@ Each object is treated as a separate block of rules.
 // nuxt.config.ts
 
 {
-  external: [
-    {
-      src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
-      family: 'Inter',
-      class: 'Inter'
-    }
-  ]
+  fontLoader: {
+    external: [
+      {
+        src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
+        family: 'Inter',
+        class: 'font-inter' // optional
+      }
+    ]
+  }
 }
 ```
 
-### external.src
+### src
 
 - Type: `string`
 - Required: `true`
@@ -462,7 +475,7 @@ Specifies path to the external source.
 }
 ```
 
-### external.family
+### family
 
 - Type: `string`
 - Default: `undefined`
@@ -478,7 +491,7 @@ Use this in combination with the _class_ or _variable_ options.
 }
 ```
 
-### external.fallback
+### fallback
 
 - Type: `string`
 - Default: `undefined`
@@ -499,7 +512,7 @@ Example above will generate the font fallback:
 }
 ```
 
-### external.class
+### class
 
 - Type: `string`
 - Default: `undefined`
@@ -526,7 +539,7 @@ So it can be used in templates:
 <h1 class="my-font">Font Loader</h1>
 ```
 
-### external.variable
+### variable
 
 - Type: `string`
 - Default: `undefined`
@@ -555,7 +568,7 @@ h1 {
 }
 ```
 
-### autoImport
+## autoImport
 
 - Type: `boolean`
 - Default: `false`
@@ -565,25 +578,25 @@ Manages the built-in `auto-import` feature.
 If enabled, you can use _font composables_ across your application without explicitly importing them.
 
 ```js
+// nuxt.config.ts
+
 {
-  autoImport: true
+  fontLoader: {
+    autoImport: true
+  }
 }
 ```
 
-## Show Support
+## Support
 
-This is a free and open source project available to everyone. If you like it, `leave a star` to show your support.
+This is a free and open source project available to everyone.
 
-### Starring a repository
-
-Navigate to the top-right corner of the page and click the <kbd>☆ Star</kbd> button.
+If you like it, _star the repo_ to show your support.
 
 ## License
 
-### Nuxt Font Loader
+Developed in Croatia 🇭🇷
 
 [MIT License](LICENSE)
 
-Copyright © Ivo Dolenc
-
-Developed in Croatia 🇭🇷
+© Ivo Dolenc
