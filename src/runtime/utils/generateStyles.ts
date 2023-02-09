@@ -1,5 +1,5 @@
-import { parseFormat } from './parseFormat'
 import type { LocalOptions, ExternalOptions } from '../../types'
+import { parseFormat } from './parseFormat'
 
 /**
  * Generates head styles from options entered by the user.
@@ -19,33 +19,27 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
       style: 'normal',
       ...font
     }
-    const local = options as LocalOptions
-    const srcFormat = parseFormat(options.src)
-    let format = srcFormat
-    if (srcFormat === 'ttf') format = 'truetype'
-    else if (srcFormat === 'otf') format = 'opentype'
+    const { src, family, fallback, weight, style, display } = options
+    const { class: _class, variable } = options
+    const { unicode } = options as LocalOptions
 
-    const fontFallback = options.fallback ? `,${options.fallback}` : ''
-    const fontFamily = `font-family:"${options.family}";`
-    const fontWeight = `font-weight:${options.weight};`
-    const fontDisplay = `font-display:${options.display};`
-    const fontStyle = `font-style:${options.style};`
-    const fontSrc = `src:url('${options.src}') format('${format}');`
     let unicodes = ''
-    let fontUnicode = ''
+    const format = parseFormat(src, true)
+    const fb = fallback ? `,${fallback}` : ''
 
-    if (options.class)
-      classes += `.${options.class}{font-family:"${options.family}"${fontFallback};}`
+    const faceRules = [
+      `font-family:"${family}";`,
+      `font-weight:${weight};`,
+      `font-style:${style};`,
+      `font-display:${display};`,
+      `src:url('${src}') format('${format}');`
+    ].join('')
 
-    if (options.variable)
-      variables += `--${options.variable}:"${options.family}"${fontFallback};`
+    if (unicode) unicodes = `unicode-range:${unicode};`
+    if (_class) classes += `.${_class}{font-family:"${family}"${fb};}`
+    if (variable) variables += `--${variable}:"${family}"${fb};`
 
-    if (local.unicode) {
-      for (const code of local.unicode) unicodes += `${code},`
-      fontUnicode = `unicode-range:${unicodes.replace(/,*$/, '')};`
-    }
-
-    fontFace += `@font-face{${fontFamily}${fontWeight}${fontDisplay}${fontStyle}${fontSrc}${fontUnicode}}`
+    fontFace += `@font-face{${faceRules}${unicodes}}`
   }
 
   if (variables) root += `:root{${variables}}`
