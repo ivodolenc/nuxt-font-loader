@@ -1,6 +1,6 @@
+import type { ExternalOptions } from '../../types'
 import { useHead } from '#app'
 import { generateStyles } from '../utils'
-import type { ExternalOptions } from '../../types'
 
 /**
  * Loads fonts directly from third-party servers.
@@ -26,7 +26,9 @@ export const useExternalFont = (external: ExternalOptions[]) => {
   let typekit = false
 
   for (const font of external) {
-    if (font.src.includes('google') && !google) {
+    const { src } = font
+
+    if (src.includes('google') && !google) {
       google = true
 
       links.push(
@@ -42,7 +44,7 @@ export const useExternalFont = (external: ExternalOptions[]) => {
       )
     }
 
-    if (font.src.includes('typekit') && !typekit) {
+    if (src.includes('typekit') && !typekit) {
       typekit = true
 
       links.push({
@@ -56,11 +58,11 @@ export const useExternalFont = (external: ExternalOptions[]) => {
       {
         rel: 'preload',
         as: 'style',
-        href: font.src
+        href: src
       },
       {
         rel: 'stylesheet',
-        href: font.src
+        href: src
       }
     )
   }

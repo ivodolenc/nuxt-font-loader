@@ -1,6 +1,6 @@
+import type { ModuleOptions } from './types'
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
 import { generateStyles, parseFormat } from './runtime/utils'
-import type { ModuleOptions } from './types'
 
 export * from './types'
 
@@ -29,14 +29,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (autoImport) {
       addImports([
-        {
-          name: 'useLocalFont',
-          from: composables
-        },
-        {
-          name: 'useExternalFont',
-          from: composables
-        }
+        { name: 'useLocalFont', from: composables },
+        { name: 'useExternalFont', from: composables }
       ])
     }
 
@@ -51,15 +45,19 @@ export default defineNuxtModule<ModuleOptions>({
         }
 
         if (options.preload) {
-          const format = parseFormat(font.src)
+          const { src } = options
+          const format = parseFormat(src)
 
-          head.link?.push({
-            rel: 'preload',
-            as: 'font',
-            type: `font/${format}`,
-            crossorigin: 'anonymous',
-            href: font.src
-          })
+          // eslint-disable-next-line
+          if (!head.link?.some((v: any) => v.href === src)) {
+            head.link?.push({
+              rel: 'preload',
+              as: 'font',
+              type: `font/${format}`,
+              crossorigin: 'anonymous',
+              href: src
+            })
+          }
         }
       }
 
@@ -74,7 +72,9 @@ export default defineNuxtModule<ModuleOptions>({
       let typekit = false
 
       for (const font of external) {
-        if (font.src.includes('google') && !google) {
+        const { src } = font
+
+        if (src.includes('google') && !google) {
           google = true
 
           head.link?.push(
@@ -90,7 +90,7 @@ export default defineNuxtModule<ModuleOptions>({
           )
         }
 
-        if (font.src.includes('typekit') && !typekit) {
+        if (src.includes('typekit') && !typekit) {
           typekit = true
 
           head.link?.push({
@@ -104,11 +104,11 @@ export default defineNuxtModule<ModuleOptions>({
           {
             rel: 'preload',
             as: 'style',
-            href: font.src
+            href: src
           },
           {
             rel: 'stylesheet',
-            href: font.src
+            href: src
           }
         )
       }

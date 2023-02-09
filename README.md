@@ -42,11 +42,11 @@ Simple, modern and lightweight font loader for Nuxt.
   <tbody>
     <tr>
       <td>useLocalFont</td>
-      <td><code>~1.2kB</code> minified</td>
+      <td><code>~1.1kB</code> minified</td>
     </tr>
     <tr>
       <td>useExternalFont</td>
-      <td><code>~1.4kB</code> minified</td>
+      <td><code>~1.28kB</code> minified</td>
     </tr>
   </tbody>
 </table>
