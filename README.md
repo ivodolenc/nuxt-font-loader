@@ -5,7 +5,7 @@ Simple, modern and lightweight font loader for Nuxt.
 ## Features
 
 - Helps you to easily load fonts on your site
-- Supports _local_ and _external_ loading strategies
+- Supports _local_ and _external_ loading
 - Provides _font composables_
 - Follows modern methods and practices
 - Designed for Nuxt 3+
@@ -17,10 +17,39 @@ Simple, modern and lightweight font loader for Nuxt.
 
 <h6>Zero-dependencies — Tree-shakeable</h6>
 
-- **Core:** `~2kB` minified
-- **Composables (optional)**
-  - **useLocalFont:** `~1.2kB` minified
-  - **useExternalFont:** `~1.4kB` minified
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="500px">Core</th>
+      <th align="left" width="500px">Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>module</td>
+      <td><code>~2kB</code> minified</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="500px">Composables</th>
+      <th align="left" width="500px">Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>useLocalFont</td>
+      <td><code>~1.2kB</code> minified</td>
+    </tr>
+    <tr>
+      <td>useExternalFont</td>
+      <td><code>~1.4kB</code> minified</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Quick Start
 
