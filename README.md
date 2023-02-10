@@ -119,6 +119,8 @@ At the moment, this is the most recommended method for handling fonts. You can o
 
 Also, try to use _variable_ fonts whenever you can to take advantage of their customization and fast loading speed.
 
+In addition, check out [Nuxt Fonty](https://github.com/ivodolenc/nuxt-fonty), a much lighter version with the same API.
+
 ### Global Settings
 
 Place the previously downloaded fonts in the `public/fonts/` directory and specify the path to the local font files.
