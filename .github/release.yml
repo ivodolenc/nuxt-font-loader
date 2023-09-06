@@ -1,21 +1,23 @@
 changelog:
   categories:
-    - title: Breaking Changes ⚠️
+    - title: Bug Fixes
       labels:
-        - breaking-change
-        - break
-    - title: New Features 🚀
-      labels:
-        - feature
-        - enhancement
-        - feat
-    - title: Bug Fixes 🐛
-      labels:
-        - bug
         - fix
-    - title: Documentation 📖
+    - title: New Features
+      labels:
+        - feat
+    - title: Types
+      labels:
+        - types
+    - title: Tests
+      labels:
+        - test
+    - title: Documentation
       labels:
         - docs
-    - title: Other Changes 🧑‍💻
+    - title: Breaking Changes
+      labels:
+        - breaking-change
+    - title: Other Changes
       labels:
         - '*'
