@@ -2,6 +2,12 @@
 
 Simple, modern and lightweight font loader for Nuxt.
 
+<sub><a href="https://github.com/ivodolenc/nuxt-font-loader">Repository</a> | <a href="https://www.npmjs.com/package/nuxt-font-loader">Package</a> | <a href="https://github.com/ivodolenc/nuxt-font-loader/releases">Releases</a> | <a href="https://github.com/ivodolenc/nuxt-font-loader/discussions">Discussions</a></sub>
+
+```sh
+npm i -D nuxt-font-loader
+```
+
 ## Features
 
 - Helps you to easily load fonts on your site
@@ -12,44 +18,6 @@ Simple, modern and lightweight font loader for Nuxt.
 - TypeScript friendly
 - Super easy to use
 - No dependencies
-
-## Size Info
-
-<h6>Zero-dependencies — Tree-shakeable</h6>
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="500px">Core</th>
-      <th align="left" width="500px">Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>module</td>
-      <td><code>~2kB</code> minified</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="500px">Composables</th>
-      <th align="left" width="500px">Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>useLocalFont</td>
-      <td><code>~1.1kB</code> minified</td>
-    </tr>
-    <tr>
-      <td>useExternalFont</td>
-      <td><code>~1.28kB</code> minified</td>
-    </tr>
-  </tbody>
-</table>
 
 ## Quick Start
 
@@ -79,7 +47,7 @@ npm i -D nuxt-font-loader
 }
 ```
 
-That's it! Start developing your app!
+That's it!
 
 ## Optimization
 
@@ -119,7 +87,7 @@ At the moment, this is the most recommended method for handling fonts. You can o
 
 Also, try to use _variable_ fonts whenever you can to take advantage of their customization and fast loading speed.
 
-In addition, check out [Nuxt Fonty](https://github.com/ivodolenc/nuxt-fonty), a much lighter version with the same API.
+In addition, check out [Nuxt Font](https://github.com/hypernym-studio/nuxt-font), a much lighter version with the same API.
 
 ### Global Settings
 
@@ -135,8 +103,8 @@ Place the previously downloaded fonts in the `public/fonts/` directory and speci
         src: '/fonts/AspektaVF.woff2',
         family: 'Aspekta Variable',
         weight: '100 900',
-        class: 'font-aspekta'
-      }
+        class: 'font-aspekta',
+      },
     ]
   }
 }
@@ -169,8 +137,8 @@ Import the function where you need it.
       src: '/fonts/AspektaVF.woff2',
       family: 'Aspekta Variable',
       weight: '100 900',
-      class: 'font-aspekta'
-    }
+      class: 'font-aspekta',
+    },
   ])
 </script>
 ```
@@ -192,8 +160,8 @@ Specify the full url to external font sources and adjust other options as needed
       {
         src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
         family: 'Inter',
-        class: 'font-inter'
-      }
+        class: 'font-inter',
+      },
     ]
   }
 }
@@ -225,8 +193,8 @@ Import the function where you need it.
     {
       src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
       family: 'Inter',
-      class: 'font-inter'
-    }
+      class: 'font-inter',
+    },
   ])
 </script>
 ```
@@ -270,8 +238,8 @@ Each object is treated as a separate block of rules.
         src: '/fonts/AspektaVF.woff2',
         family: 'Aspekta Variable',
         weight: '100 900',
-        class: 'font-aspekta' // optional
-      }
+        class: 'font-aspekta', // optional
+      },
     ]
   }
 }
@@ -486,8 +454,8 @@ Each object is treated as a separate block of rules.
       {
         src: 'https://fonts.googleapis.com/css2?family=Inter&display=swap',
         family: 'Inter',
-        class: 'font-inter' // optional
-      }
+        class: 'font-inter', // optional
+      },
     ]
   }
 }
@@ -618,16 +586,14 @@ If enabled, you can use _font composables_ across your application without expli
 }
 ```
 
-## Support
+## Community
 
-This is a free and open source project available to everyone.
-
-If you like it, _star the repo_ to show your support.
+Feel free to use the official [discussions](https://github.com/ivodolenc/nuxt-font-loader/discussions) for any additional questions.
 
 ## License
 
-Developed in Croatia 🇭🇷
+Developed in 🇭🇷 Croatia
 
-[MIT License](LICENSE)
+Released under the [MIT](LICENSE.txt) license.
 
 © Ivo Dolenc
