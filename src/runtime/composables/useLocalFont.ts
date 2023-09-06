@@ -1,6 +1,6 @@
-import type { LocalOptions } from '../../types'
-import { useHead } from '#app'
+import { useHead } from '#imports'
 import { generateStyles, parseFormat } from '../utils'
+import type { LocalOptions } from '../../types'
 
 /**
  * Loads fonts from the same domain as your deployment.
@@ -29,7 +29,7 @@ export const useLocalFont = (local: LocalOptions[]) => {
   for (const font of local) {
     const options = {
       preload: true,
-      ...font
+      ...font,
     }
     const { src } = options
 
@@ -42,7 +42,7 @@ export const useLocalFont = (local: LocalOptions[]) => {
           as: 'font',
           type: `font/${format}`,
           crossorigin: 'anonymous',
-          href: src
+          href: src,
         })
       }
     }

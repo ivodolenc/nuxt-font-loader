@@ -1,5 +1,5 @@
-import type { LocalOptions, ExternalOptions } from '../../types'
 import { parseFormat } from './parseFormat'
+import type { LocalOptions, ExternalOptions } from '../../types'
 
 /**
  * Generates head styles from options entered by the user.
@@ -17,7 +17,7 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
       weight: '400',
       display: 'optional',
       style: 'normal',
-      ...font
+      ...font,
     }
     const { src, family, fallback, weight, style, display } = options
     const { class: _class, variable } = options
@@ -32,7 +32,7 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
       `font-weight:${weight};`,
       `font-style:${style};`,
       `font-display:${display};`,
-      `src:url('${src}') format('${format}');`
+      `src:url('${src}') format('${format}');`,
     ].join('')
 
     if (unicode) unicodes = `unicode-range:${unicode};`
@@ -47,6 +47,6 @@ export const generateStyles = (fonts: LocalOptions[] | ExternalOptions[]) => {
   return {
     fontFace,
     classes,
-    root
+    root,
   }
 }

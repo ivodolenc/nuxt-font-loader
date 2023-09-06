@@ -1,6 +1,6 @@
-import type { ExternalOptions } from '../../types'
-import { useHead } from '#app'
+import { useHead } from '#imports'
 import { generateStyles } from '../utils'
+import type { ExternalOptions } from '../../types'
 
 /**
  * Loads fonts directly from third-party servers.
@@ -34,13 +34,13 @@ export const useExternalFont = (external: ExternalOptions[]) => {
       links.push(
         {
           rel: 'preconnect',
-          href: 'https://fonts.googleapis.com'
+          href: 'https://fonts.googleapis.com',
         },
         {
           rel: 'preconnect',
           crossorigin: 'anonymous',
-          href: 'https://fonts.gstatic.com'
-        }
+          href: 'https://fonts.gstatic.com',
+        },
       )
     }
 
@@ -50,7 +50,7 @@ export const useExternalFont = (external: ExternalOptions[]) => {
       links.push({
         rel: 'preconnect',
         crossorigin: 'anonymous',
-        href: 'https://use.typekit.net'
+        href: 'https://use.typekit.net',
       })
     }
 
@@ -58,12 +58,12 @@ export const useExternalFont = (external: ExternalOptions[]) => {
       {
         rel: 'preload',
         as: 'style',
-        href: src
+        href: src,
       },
       {
         rel: 'stylesheet',
-        href: src
-      }
+        href: src,
+      },
     )
   }
 

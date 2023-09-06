@@ -1,6 +1,6 @@
-import type { ModuleOptions } from './types'
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
 import { generateStyles, parseFormat } from './runtime/utils'
+import type { ModuleOptions } from './types'
 
 export * from './types'
 
@@ -9,12 +9,12 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'nuxt-font-loader',
     configKey: 'fontLoader',
     compatibility: {
-      nuxt: '>=3.0.0'
-    }
+      nuxt: '>=3.0.0',
+    },
   },
 
   defaults: {
-    autoImport: false
+    autoImport: false,
   },
 
   setup(options, nuxt) {
@@ -30,7 +30,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (autoImport) {
       addImports([
         { name: 'useLocalFont', from: composables },
-        { name: 'useExternalFont', from: composables }
+        { name: 'useExternalFont', from: composables },
       ])
     }
 
@@ -41,7 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
       for (const font of local) {
         const options = {
           preload: true,
-          ...font
+          ...font,
         }
 
         if (options.preload) {
@@ -55,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
               as: 'font',
               type: `font/${format}`,
               crossorigin: 'anonymous',
-              href: src
+              href: src,
             })
           }
         }
@@ -80,13 +80,13 @@ export default defineNuxtModule<ModuleOptions>({
           head.link?.push(
             {
               rel: 'preconnect',
-              href: 'https://fonts.googleapis.com'
+              href: 'https://fonts.googleapis.com',
             },
             {
               rel: 'preconnect',
               crossorigin: 'anonymous',
-              href: 'https://fonts.gstatic.com'
-            }
+              href: 'https://fonts.gstatic.com',
+            },
           )
         }
 
@@ -96,7 +96,7 @@ export default defineNuxtModule<ModuleOptions>({
           head.link?.push({
             rel: 'preconnect',
             crossorigin: 'anonymous',
-            href: 'https://use.typekit.net'
+            href: 'https://use.typekit.net',
           })
         }
 
@@ -104,16 +104,16 @@ export default defineNuxtModule<ModuleOptions>({
           {
             rel: 'preload',
             as: 'style',
-            href: src
+            href: src,
           },
           {
             rel: 'stylesheet',
-            href: src
-          }
+            href: src,
+          },
         )
       }
 
       if (styles) head.style?.push({ children: styles })
     }
-  }
+  },
 })
