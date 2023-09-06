@@ -8,17 +8,16 @@
   "homepage": "https://github.com/ivodolenc/nuxt-font-loader",
   "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
-  "main": "./dist/module.mjs",
-  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
-      "types": "./dist/types.d.ts"
+      "types": "./dist/types.d.mts"
     }
   },
   "files": [
     "dist",
-    "!dist/module.cjs"
+    "!dist/module.cjs",
+    "!*.d.ts"
   ],
   "keywords": [
     "nuxt",
@@ -31,28 +30,24 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
+    "build": "nuxt-module-build",
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
-    "build:module": "nuxt-module-build",
-    "prepublishOnly": "npm run build:module",
-    "format": "prettier --write .",
-    "lint": "eslint .",
-    "fix": "eslint --fix ."
+    "bump": "bummp",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js .",
+    "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js --fix .",
+    "format": "prettier --config .config/prettier.config.js --write .",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "^0.2.1",
-    "@types/node": "^18.13.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "nuxt": "^3.2.0",
-    "prettier": "^2.8.4",
-    "typescript": "^4.9.5"
-  },
-  "eslintConfig": {
-    "extends": "./.config/eslint.config.cjs"
-  },
-  "prettier": "./.config/prettier.config.cjs"
+    "@nuxt/module-builder": "^0.5.1",
+    "@types/node": "^20.5.9",
+    "bummp": "^0.2.0",
+    "configshare": "^0.1.4",
+    "eslint": "^8.48.0",
+    "nuxt": "^3.7.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.1.6"
+  }
 }
