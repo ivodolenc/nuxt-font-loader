@@ -15,9 +15,7 @@
     }
   },
   "files": [
-    "dist",
-    "!dist/module.cjs",
-    "!*.d.ts"
+    "dist"
   ],
   "keywords": [
     "nuxt",
