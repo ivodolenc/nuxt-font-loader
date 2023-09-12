@@ -1,6 +1,6 @@
 {
   "name": "nuxt-font-loader",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Simple, modern and lightweight font loader for Nuxt.",
   "author": "Ivo Dolenc",
   "license": "MIT",
@@ -8,10 +8,11 @@
   "homepage": "https://github.com/ivodolenc/nuxt-font-loader",
   "funding": "https://github.com/sponsors/ivodolenc",
   "type": "module",
+  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
-      "types": "./dist/types.d.mts"
+      "types": "./dist/types.d.ts"
     }
   },
   "files": [
