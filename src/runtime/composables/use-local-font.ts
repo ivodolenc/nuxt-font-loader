@@ -1,26 +1,7 @@
 import { useHead } from '#imports'
-import { generateStyles, parseFormat } from '../utils'
-import type { LocalOptions } from '../../types'
+import { generateStyles, parseFormat } from '../../utils'
+import type { LocalOptions } from '../../types/options'
 
-/**
- * Loads fonts from the same domain as your deployment.
- *
- * At the moment, this is the most recommended method for handling fonts.
- *
- * @example
- *
- * ```js
- * useLocalFont([
- *     {
- *       src: '/fonts/AspektaVF.woff2',
- *       family: 'Aspekta Variable',
- *       weight: '100 900'
- *     }
- * ])
- * ```
- *
- * @since 2.2.0
- */
 export const useLocalFont = (local: LocalOptions[]) => {
   const { fontFace, classes, root } = generateStyles(local)
   const styles = `${fontFace}${classes}${root}`

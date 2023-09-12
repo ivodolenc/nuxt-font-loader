@@ -1,5 +1,5 @@
-import { parseFormat } from './parseFormat'
-import type { LocalOptions, ExternalOptions } from '../../types'
+import { parseFormat } from './parse-format'
+import type { LocalOptions, ExternalOptions } from '../types/options'
 
 /**
  * Generates head styles from options entered by the user.

@@ -1,11 +1,6 @@
-/**
- * External Options.
- *
- * @since 2.1.0
- */
-export interface ExternalOptions {
+export interface LocalOptions {
   /**
-   * Specifies path to the external source.
+   * Specifies path to the font file.
    *
    * @note `required` option
    */
@@ -13,20 +8,9 @@ export interface ExternalOptions {
   /**
    * Defines the font family name.
    *
-   * Use this in combination with the `class` or `variable` options.
-   *
-   * @example
-   *
-   * ```js
-   * {
-   *   family: 'Family Name',
-   *   class: 'my-font'
-   * }
-   * ```
-   *
-   * @default undefined
+   * @note `required` option
    */
-  family?: string
+  family: string
   /**
    * Defines the font family fallback.
    *
@@ -47,6 +31,34 @@ export interface ExternalOptions {
    * @default undefined
    */
   fallback?: string
+  /**
+   * Defines the font weight.
+   *
+   * @example
+   *
+   * ```js
+   * // static weight
+   * weight: '300'
+   *
+   * // variable weight range
+   * weight: '100 900'
+   * ```
+   *
+   * @default '400'
+   */
+  weight?: string
+  /**
+   * Specifies how a font face is displayed.
+   *
+   * @default 'optional'
+   */
+  display?: 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
+  /**
+   * Defines the font style.
+   *
+   * @default 'normal'
+   */
+  style?: 'normal' | 'italic' | 'oblique'
   /**
    * Defines the global css `class` for the current source.
    *
@@ -101,4 +113,32 @@ export interface ExternalOptions {
    * @default undefined
    */
   variable?: string
+  /**
+   * Specifies the `preload` links.
+   *
+   * @default true
+   */
+  preload?: boolean
+  /**
+   * Defines a specific range of characters to be used from the font.
+   *
+   * @example
+   *
+   * ```js
+   * {
+   *   preload: false,
+   *   display: 'swap',
+   *   unicode: ['U+26']
+   * }
+   * ```
+   *
+   * Example above will generate:
+   *
+   * ```css
+   * font-face { font-display: swap; unicode-range: U+26; }
+   * ```
+   *
+   * @default undefined
+   */
+  unicode?: string[]
 }
