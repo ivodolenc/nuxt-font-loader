@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
-    "build": "nuxt-module-build",
+    "build": "rolli",
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
@@ -39,13 +39,13 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "^0.5.1",
-    "@types/node": "^20.5.9",
+    "@types/node": "^20.6.0",
     "bummp": "^0.2.0",
-    "configshare": "^0.1.4",
-    "eslint": "^8.48.0",
+    "configshare": "^0.1.5",
+    "eslint": "^8.49.0",
     "nuxt": "^3.7.1",
     "prettier": "^3.0.3",
+    "rolli": "^0.6.0",
     "typescript": "^5.1.6"
   }
 }

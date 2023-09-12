@@ -1,22 +1,7 @@
 import { useHead } from '#imports'
-import { generateStyles } from '../utils'
-import type { ExternalOptions } from '../../types'
+import { generateStyles } from '../../utils'
+import type { ExternalOptions } from '../../types/options'
 
-/**
- * Loads fonts directly from third-party servers.
- *
- * @example
- *
- * ```js
- * useExternalFont([
- *     {
- *       src: 'path-to-external-source'
- *     }
- * ])
- * ```
- *
- * @since 2.2.0
- */
 export const useExternalFont = (external: ExternalOptions[]) => {
   const { classes, root } = generateStyles(external)
   const styles = `${classes}${root}`

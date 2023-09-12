@@ -1,10 +1,6 @@
-import type { LocalOptions, ExternalOptions } from './index'
+import type { NuxtModule } from '@nuxt/schema'
+import type { LocalOptions, ExternalOptions } from './options'
 
-/**
- * Module Options.
- *
- * @since 2.0.0
- */
 export interface ModuleOptions {
   /**
    * An array of objects that specifies `local` font sources.
@@ -66,25 +62,6 @@ export interface ModuleOptions {
   autoImport?: boolean
 }
 
-declare module '@nuxt/schema' {
-  interface NuxtConfig {
-    /**
-     * Nuxt Font Loader
-     *
-     * Simple, modern and lightweight font loader for Nuxt.
-     *
-     * @see [source](https://github.com/ivodolenc/nuxt-font-loader)
-     */
-    fontLoader?: ModuleOptions
-  }
-  interface NuxtOptions {
-    /**
-     * Nuxt Font Loader
-     *
-     * Simple, modern and lightweight font loader for Nuxt.
-     *
-     * @see [source](https://github.com/ivodolenc/nuxt-font-loader)
-     */
-    fontLoader?: ModuleOptions
-  }
-}
+declare const module: NuxtModule<ModuleOptions>
+
+export { module as default }

@@ -1,16 +1,14 @@
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
-import { generateStyles, parseFormat } from './runtime/utils'
-import type { ModuleOptions } from './types'
-
-export * from './types'
+import { generateStyles, parseFormat } from './utils'
+import { name, version, configKey, compatibility } from './meta'
+import type { ModuleOptions } from './types/module'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'nuxt-font-loader',
-    configKey: 'fontLoader',
-    compatibility: {
-      nuxt: '>=3.0.0',
-    },
+    name,
+    version,
+    configKey,
+    compatibility,
   },
 
   defaults: {
