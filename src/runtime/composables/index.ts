@@ -1,2 +1,2 @@
-export * from './use-external-font'
-export * from './use-local-font'
+export * from './use-external-font.js'
+export * from './use-local-font.js'

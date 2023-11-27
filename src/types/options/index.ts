@@ -1,2 +1,2 @@
-export * from './external'
-export * from './local'
+export * from './external.js'
+export * from './local.js'

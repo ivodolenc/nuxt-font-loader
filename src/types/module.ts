@@ -1,5 +1,5 @@
 import type { NuxtModule } from '@nuxt/schema'
-import type { LocalOptions, ExternalOptions } from './options'
+import type { LocalOptions, ExternalOptions } from './options/index.js'
 
 export interface ModuleOptions {
   /**

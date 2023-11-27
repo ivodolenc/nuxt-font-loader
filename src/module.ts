@@ -1,7 +1,7 @@
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
-import { generateStyles, parseFormat } from './utils'
-import { name, version, configKey, compatibility } from './meta'
-import type { ModuleOptions } from './types/module'
+import { generateStyles, parseFormat } from './utils/index.js'
+import { name, version, configKey, compatibility } from './meta.js'
+import type { ModuleOptions } from './types/module.js'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {

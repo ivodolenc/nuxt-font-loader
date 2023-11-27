@@ -1,6 +1,6 @@
 import { useHead } from '#imports'
-import { generateStyles, parseFormat } from '../../utils'
-import type { LocalOptions } from '../../types/options'
+import { generateStyles, parseFormat } from '../../utils/index.js'
+import type { LocalOptions } from '../../types/options/index.js'
 
 export const useLocalFont = (local: LocalOptions[]) => {
   const { fontFace, classes, root } = generateStyles(local)

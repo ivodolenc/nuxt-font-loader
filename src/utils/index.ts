@@ -1,2 +1,2 @@
-export * from './generate-styles'
-export * from './parse-format'
+export * from './generate-styles.js'
+export * from './parse-format.js'

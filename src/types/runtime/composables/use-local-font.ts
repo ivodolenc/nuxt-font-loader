@@ -1,4 +1,4 @@
-import type { LocalOptions } from '../../options'
+import type { LocalOptions } from '../../options/index.js'
 
 /**
  * Loads fonts from the same domain as your deployment.

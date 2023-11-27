@@ -1,6 +1,6 @@
 import { useHead } from '#imports'
-import { generateStyles } from '../../utils'
-import type { ExternalOptions } from '../../types/options'
+import { generateStyles } from '../../utils/index.js'
+import type { ExternalOptions } from '../../types/options/index.js'
 
 export const useExternalFont = (external: ExternalOptions[]) => {
   const { classes, root } = generateStyles(external)

@@ -1,4 +1,4 @@
-import type { ExternalOptions } from '../../options'
+import type { ExternalOptions } from '../../options/index.js'
 
 /**
  * Loads fonts directly from third-party servers.
