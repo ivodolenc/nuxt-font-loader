@@ -8,10 +8,12 @@ node_modules
 .git
 .private
 .cache
+.nuxt
+.output
 .env*
-dist
 output
 out
 coverage
 temp
 cache
+dist
